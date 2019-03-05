@@ -11,28 +11,31 @@ public class CuttingManager : MonoBehaviour
     Rect bottomRight = new Rect(Screen.width / 2, 0, Screen.width / 2, Screen.height / 2);
     Rect topRight = new Rect(Screen.width / 2, Screen.height / 2, Screen.width / 2, Screen.height / 2);
 
-    Rect leftCheckZone = new Rect((Screen.width / 9) * 6, (Screen.height / 16) * 7, (Screen.width / 9) * 1, (Screen.height / 16) * 4); //pour la pos de départ, on divise la largeur et la hauteur selon le ratio 16:9
-    Rect rightCheckZone = new Rect((Screen.width / 9) * 8, (Screen.height / 16) * 7, (Screen.width / 9) * 1, (Screen.height / 16) * 4);
-
 
     public Texture tex;
+    public GameObject pointingTool;
+    private Camera mainCamera;
+    private Touch touch;
+    public float swipeWindowTime; // The time you have to trace a swipe
+    public float minimumSwipeLenght; // The minimum length (en pixels) of the vector made with swipe needed to be valid
+    public float timeBetweenSwipes;
+
+    bool canSwipe;
+    bool isPlayingCoroutine;
+    Vector2 actualSwipe;
+    bool hasAStartPosition;
+    bool hasAnActualSwipe;
 
     public Vector2 startSwipePosition;
-    private bool touchedLeftZone;
-    private bool touchedRightZone;
+    public Vector2 endSwipePosition;
+    public Vector2 swipeDirection;
+
+    private Vector2 swipeVector;
 
     public bool isGamePaused = false;
 
     // = = = [ VARIABLES DEFINITION ] = = =
 
-    public struct SwipeData
-    {
-        Vector2 startPosition;
-        Vector2 endPosition;
-        Vector2 middlePosition;
-    }
-
-    public SwipeData lastSwipedata;
 
     // = = =
 
@@ -48,6 +51,9 @@ public class CuttingManager : MonoBehaviour
         {
             Destroy(this);
         }
+        canSwipe = true;
+        mainCamera = Camera.main;
+        isPlayingCoroutine = false;
     }
 
     private void OnGUI()
@@ -65,14 +71,47 @@ public class CuttingManager : MonoBehaviour
         //    GUI.Label(new Rect(0 + 130 * num, 0, 120, 100), message);
         //}
 
-        GUI.color = Color.red;
-        GUI.DrawTexture(leftCheckZone, tex);
-        GUI.DrawTexture(rightCheckZone, tex);
     }
 
     private void Update()
     {
-        CheckIfSwiping();
+        if (Input.touchCount > 0 && !isGamePaused)
+        {
+            touch = Input.GetTouch(0);    //on récupère l'input du PREMIER doigt qui touche (index 0)
+            if (!hasAnActualSwipe)
+            {
+                actualSwipe = Swiping();
+
+                if (!hasAnActualSwipe && touch.phase == TouchPhase.Ended)
+                {
+                    endSwipePosition = touch.position;
+                    swipeVector = endSwipePosition - startSwipePosition;
+
+                    print("length = " + swipeVector.magnitude);
+
+                    if (swipeVector.magnitude >= minimumSwipeLenght)    // si le vector créé est assez long pour être considéré valide
+                    {
+                        swipeDirection = DirectionConverter(swipeVector.normalized);
+                        Debug.DrawRay(Vector3.zero, swipeDirection, Color.red, 1f);
+
+                        hasAnActualSwipe = true;
+                        isPlayingCoroutine = false;
+
+                    }
+                }
+            }
+            else
+            {
+                StartCoroutine(NewSwipeDelay());
+            }
+        }
+        else
+        {
+            hasAStartPosition = false;
+            swipeDirection = Vector2.zero;
+            isPlayingCoroutine = false;
+        }
+
     }
 
     // = = =
@@ -84,7 +123,7 @@ public class CuttingManager : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Vector2 touchPos = Input.GetTouch(0).position;
-            print(touchPos);
+            //print(touchPos);
             if (topLeft.Contains(touchPos))
             {
                 Debug.Log("topLeft touched");
@@ -102,40 +141,100 @@ public class CuttingManager : MonoBehaviour
                 Debug.Log("bottomRight touched");
             }
         }
-
         return;
     }
 
-    private bool CheckIfSwiping()
+    private Vector2 Swiping()
     {
-        if (Input.touchCount > 0)
+        if (!isPlayingCoroutine)
         {
-            Vector2 touchPos = Input.GetTouch(0).position;
-            if (leftCheckZone.Contains(touchPos))
-            {
-                startSwipePosition = touchPos; // on update la position de départ jusqu'à ce qu'elle quitte la zone de détection
-                touchedLeftZone = true;
-                Debug.Log("left zone touched");
-            }
-            else if (!leftCheckZone.Contains(touchPos) && touchedLeftZone)
-            {
+            print("go");
+            StartCoroutine(TimeToSwipe());
+            isPlayingCoroutine = true;
+        }
 
-                Debug.Log("left zone quitted");
-            }
 
-            if (rightCheckZone.Contains(touchPos))
-            {
-                startSwipePosition = touchPos; // on update la position de départ jusqu'à ce qu'elle quitte la zone de détection
-                touchedRightZone = true;
-                Debug.Log("right zone touched");
-            }
-            else if (!rightCheckZone.Contains(touchPos) && touchedRightZone)
-            {
+        Vector2 touchPos = touch.position;
+        if (!hasAStartPosition)
+        {
+            startSwipePosition = touchPos;
+            hasAStartPosition = true;
+        }
 
-                Debug.Log("right zone quitted");
+        if (canSwipe)                            //Pendant un temps donné (cf TimeToSwipe) on va récupérer la position du doigt sur l'écran pour en faire le point de fin du swipe
+        {
+
+        
+            //Vector2 transformedPos = new Vector2(touchPos.x / 180, touchPos.y / 170); // position du doigt en coordonnées monde (puisque le capté de base est en pixel)
+            //print("touchPos : " + touchPos + "Which becomes : " + transformedPos);
+            //pointingTool.transform.position = transformedPos;                         // La position du debugPositionTool est suit celle du doigt
+
+            Vector2 tempEndSwipePosition = touch.position;
+
+            Vector2 tempSwipeVector = (tempEndSwipePosition - startSwipePosition);      //vector entre le point de départ et la position du doigt actuelle
+
+            if (tempSwipeVector.magnitude > swipeVector.magnitude)                      // si jamais le vector est entre le point de départ et l'actuelle position du doigt est plus grand que le plus grand vector storé jusque-là
+            {
+                endSwipePosition = tempEndSwipePosition;                                //la position du doigt devient la nouvelle fin de swipe
+                swipeVector = (endSwipePosition - startSwipePosition);
             }
         }
-        return false;
+        else if (!canSwipe)
+        {
+            if (swipeVector.magnitude >= minimumSwipeLenght)                        // si le vector créé est assez long pour être considéré valide
+            {
+                swipeDirection = DirectionConverter(swipeVector.normalized);        // la direction du swipe normalisée et orientée
+                Debug.DrawRay(startSwipePosition, swipeDirection*3, Color.red, 1f);
+                hasAnActualSwipe = true;
+                isPlayingCoroutine = false;
+
+                return swipeDirection;
+            }
+        }
+        return Vector2.zero;
+    }
+
+
+    private IEnumerator TimeToSwipe()
+    {
+        canSwipe = true;
+        //print("step1");
+
+        yield return new WaitForSeconds(swipeWindowTime);
+
+        //print("step2");
+        canSwipe = false;
+    }
+
+    private IEnumerator NewSwipeDelay()
+    {
+        print("waiting");
+        yield return new WaitForSeconds(timeBetweenSwipes);
+        startSwipePosition = Vector2.zero;
+        endSwipePosition = Vector2.zero;
+        hasAnActualSwipe = false;
+        hasAStartPosition = false;
+    }
+
+    private Vector2 DirectionConverter(Vector2 retrievedDirection)
+    {
+        Vector2 convertedVectorDirection = Vector2.zero;
+        float tempY = 0;
+        float tempX = 0;
+        print("retrievedDirection :" + retrievedDirection);
+        if (retrievedDirection.x < 0)
+        {
+            tempX = -retrievedDirection.x;
+            tempY = -retrievedDirection.y;
+        }
+        else
+        {
+            tempX = retrievedDirection.x;
+            tempY = retrievedDirection.y;
+        }
+        convertedVectorDirection = new Vector2(tempX, tempY);
+        print(convertedVectorDirection);
+        return convertedVectorDirection;
     }
 
     // = = =
