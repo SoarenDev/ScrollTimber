@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
-
     public static GameManager instance;
 
     Rect bottomLeft = new Rect(0, 0, Screen.width / 2, Screen.height / 2);
@@ -22,6 +20,8 @@ public class GameManager : MonoBehaviour
     public Vector2 startSwipePosition;
     private bool touchedLeftZone;
     private bool touchedRightZone;
+
+    public  bool        isGamePaused        = false;
 
     // = = = [ VARIABLES DEFINITION ] = = =
 
