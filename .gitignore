@@ -51,4 +51,4 @@ sysinfo.txt
 crashlytics-build.properties
 
 # [USER] Unity3D library and cache files
-Library/
+.Library/
