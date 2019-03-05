@@ -21,6 +21,7 @@ public class scr_tree_behavior : MonoBehaviour
     {
         GenerateAppearance();
         InitializeWeakPoint();
+        InitializeSelfDestruction(15.00f);
     }
 
 // = = =
@@ -44,6 +45,15 @@ public class scr_tree_behavior : MonoBehaviour
         weak_point_direction = GenerateCutDirection();
         // Debug.Log(weak_point_direction);
         // Debug.DrawLine(gameObject.transform.position, gameObject.transform.position+weak_point_direction, Color.yellow, 10.00f);
+        return;
+    }
+
+    /// <summary>
+	/// Initialises the object self destruction after a given amount of time.
+	/// </summary>
+	public void InitializeSelfDestruction(float delay)
+	{
+        Destroy(gameObject, delay);
         return;
     }
 
