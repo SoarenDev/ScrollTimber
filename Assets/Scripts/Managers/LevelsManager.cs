@@ -52,7 +52,6 @@ public class LevelsManager : MonoBehaviour
     // </summary>
     void InitializeDictionnaries()
     {
-
         // LEVEL DATA
         foreach (var item in level_data_list)
 		{
@@ -64,6 +63,27 @@ public class LevelsManager : MonoBehaviour
 
 		Debug.Log("level data dictionnary created with " + level_data_dict.Count + " references!");
 		// Debug.Log("Test dictionnary reference name : reference" + "0" + " = " + level_data_dict[0].name);
+
+        return;
+    }
+
+    // <summary>
+    // Resets every game data related to the level the player was currently playing.
+    // </summary>
+    public void ResetLevelState()
+    {
+        // reset score
+        ScoreManager.instance.ResetScore();
+        ScoreManager.instance.ResetCombo();
+
+        // fails count
+        GameManager.instance.fails_count = 0;
+
+        // remaining trees
+        GameManager.instance.RemainingTrees = -1;      // set to -1 to avoid triggering the LevelSuccess of the propertie
+
+        // reset finished level bool
+        GameManager.instance.is_level_finished = false;
 
         return;
     }

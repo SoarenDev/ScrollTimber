@@ -25,7 +25,6 @@ public class scr_level_generation_behavior : MonoBehaviour
     /// </summary>
     void Start()
     {
-        generation_coroutine = StartCoroutine("GenerationCoroutine");
     }
 
 // = = =
@@ -38,6 +37,20 @@ public class scr_level_generation_behavior : MonoBehaviour
     public void ResetLevelGeneration()
     {
         actual_generation_index = 0;
+
+        return;
+    }
+
+    /// <summary>
+    /// Starts the generation behavior with the Level Manager actual level.
+    /// </summary>
+    public void StartLevelGeneration()
+    {
+        ResetLevelGeneration();
+        generation_coroutine = StartCoroutine("GenerationCoroutine");
+
+        // set gamemanager remaining tree amount
+        GameManager.instance.remaining_trees = LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].generation_list.Count;
 
         return;
     }

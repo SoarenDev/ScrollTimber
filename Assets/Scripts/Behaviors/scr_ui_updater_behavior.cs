@@ -24,7 +24,7 @@ public class scr_ui_updater_behavior : MonoBehaviour
     void Start()
     {
         UpdateScoreUI("0");
-        UpdateComboUI("+0");
+        UpdateComboUI("0");
     }
 
 // = = =
@@ -46,7 +46,7 @@ public class scr_ui_updater_behavior : MonoBehaviour
     /// </summary>
     public void UpdateComboUI(string text)
     {
-        txt_combo.text = text;
+        txt_combo.text = "+ " + text;
 
         return;
     }

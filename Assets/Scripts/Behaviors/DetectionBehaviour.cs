@@ -41,6 +41,9 @@ public class DetectionBehaviour : MonoBehaviour
             localDetectedTree = null;
             localTreeIsInZone = false;
 
+            // mark the tree quitting the zone as missed
+            GameManager.instance.OnTreeMissed(other.gameObject);
+
             CuttingManager.cuttingManagerInstance.UnregisterTree();
         }
     }

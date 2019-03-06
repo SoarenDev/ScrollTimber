@@ -96,7 +96,9 @@ public class scr_tree_behavior : MonoBehaviour
                 Destroy(this.gameObject);
                 break;
         }
-        
+
+        GameManager.instance.RemainingTrees -= 1;
+
         return;
     }
 

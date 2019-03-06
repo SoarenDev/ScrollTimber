@@ -103,7 +103,6 @@ public class CuttingManager : MonoBehaviour
 
         publicSwipeVectorDirection = GetSwipingDirection();
 
-        print("delta = " + touch.deltaPosition.magnitude);
     }
 
     // = = =
