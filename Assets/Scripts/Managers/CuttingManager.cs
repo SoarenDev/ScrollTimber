@@ -21,7 +21,6 @@ public class CuttingManager : MonoBehaviour
     public float minimumSwipeLenght = 200f; // The minimum length (en pixels) of the vector made with swipe needed to be valid
     public float timeBetweenSwipes = 0.2f;
     public float vectorComparisonOffset = 10;
-    public Collider treeDetectionZone;
     
 
     bool canSwipe;
@@ -29,7 +28,7 @@ public class CuttingManager : MonoBehaviour
     Vector2 actualSwipe;
     bool hasAStartPosition;
     bool hasAnActualSwipe;
-    bool treeIsInZone;
+    public bool treeIsInZone;
 
     public Vector2 startSwipePosition;
     public Vector2 endSwipePosition;
@@ -102,23 +101,6 @@ public class CuttingManager : MonoBehaviour
 
     // = = = [ CLASS METHODS ] = = =
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Tree")
-        {
-            detectedTree = other.gameObject ;
-            treeIsInZone = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (detectedTree != null && other.gameObject == detectedTree)
-        {
-            detectedTree = null;
-            treeIsInZone = false;
-        }
-    }
 
     public cutStateEnum ComparingSwipeAndTree()
     {
@@ -256,7 +238,7 @@ public class CuttingManager : MonoBehaviour
             if (swipeVector.magnitude >= minimumSwipeLenght)                        // si le vector créé est assez long pour être considéré valide
             {
                 swipeDirection = DirectionConverter(swipeVector.normalized);        // la direction du swipe normalisée et orientée
-                Debug.DrawRay(startSwipePosition, swipeDirection * 3, Color.red, 1f);
+                //Debug.DrawRay(startSwipePosition, swipeDirection * 3, Color.red, 1f);
                 hasAnActualSwipe = true;
                 isPlayingCoroutine = false;
 
