@@ -11,6 +11,8 @@ public class so_level_data : ScriptableObject
 [Space(10)][Header("Data")]
     public  int                                 id                          ;
     public  string                              label                       ;
+    [Space(5)]
+    public  int                                 best_score                  ;
 
 [Space(10)][Header("Content")]
     public  List<struct_object_to_generate>     generation_list             ;

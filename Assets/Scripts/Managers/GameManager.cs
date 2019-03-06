@@ -6,21 +6,32 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-
+// = = = [ VARIABLES DEFINITION ] = = =
+    
     public  bool        isGamePaused        = false;
 
-    // = = = [ VARIABLES DEFINITION ] = = =
+// = = =
+
+// = = = [ MONOBEHAVIOR METHODS ] = = =
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
 
-    // = = =
+// = = =
 
-    // = = = [ MONOBEHAVIOR METHODS ] = = =
-
-    // = = =
-
-    // = = = [ CLASS METHODS ] = = =
+// = = = [ CLASS METHODS ] = = =
 
 
-    // = = =
+// = = =
 
 }
