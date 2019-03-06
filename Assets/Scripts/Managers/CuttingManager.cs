@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum cutStateEnum
+{
+    Failed,
+    Success,
+    Perfect        
+}
+
 public class CuttingManager : MonoBehaviour
 {
     public static CuttingManager cuttingManagerInstance;
@@ -34,7 +41,7 @@ public class CuttingManager : MonoBehaviour
     public Vector2 endSwipePosition;
     private Vector2 swipeDirection;
     public Vector2 publicSwipeVectorDirection;
-    public GameObject detectedTree;
+    public scr_tree_behavior detectedTree;
     public Vector2 treeVector;
 
     private Vector2 swipeVector;
@@ -84,7 +91,7 @@ public class CuttingManager : MonoBehaviour
     {
         if (treeIsInZone)
         {
-            treeVector = detectedTree.GetComponent<scr_tree_behavior>().weak_point_direction;
+            treeVector = detectedTree.weak_point_direction;
         }
 
         Debug.DrawRay(Vector2.zero, treeVector * 5, Color.green);
@@ -93,7 +100,7 @@ public class CuttingManager : MonoBehaviour
 
         if (hasAnActualSwipe)
         {
-            ComparingSwipeAndTree();
+            detectedTree.CutTree( ComparingSwipeAndTree() );
         }
     }
 
@@ -289,13 +296,6 @@ public class CuttingManager : MonoBehaviour
         convertedVectorDirection = new Vector2(tempX, tempY);
         print(convertedVectorDirection);
         return convertedVectorDirection;
-    }
-
-    public enum cutStateEnum
-    {
-        Failed,
-        Success,
-        Perfect
     }
 
     // = = =

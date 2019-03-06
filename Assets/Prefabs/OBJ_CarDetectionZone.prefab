@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1974387753093831965}
   - component: {fileID: 1974387753093831964}
   - component: {fileID: 1974387753093831963}
+  - component: {fileID: 7600734160769014727}
   m_Layer: 0
-  m_Name: DetectionZone
+  m_Name: OBJ_CarDetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,3 +109,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &7600734160769014727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974387753093831966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e0974dc9113494aace7551e8c9bef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

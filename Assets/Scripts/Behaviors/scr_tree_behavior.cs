@@ -77,8 +77,18 @@ public class scr_tree_behavior : MonoBehaviour
     /// <summary>
 	/// Called by the cutting manager when the tree is cutted by the player.
 	/// </summary>
-	public void CutTree()
+	public void CutTree( cutStateEnum state )
 	{
+        switch (state)
+        {
+            case cutStateEnum.Success:
+                Debug.Log("SUCCESS");
+            break;
+
+            case cutStateEnum.Perfect:
+                Debug.Log("PERFECT");
+            break;
+        }
         
         return;
     }

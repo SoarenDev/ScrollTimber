@@ -29,7 +29,7 @@ public class DetectionBehaviour : MonoBehaviour
             localDetectedTree = other.gameObject;
             localTreeIsInZone = true;
 
-            CuttingManager.cuttingManagerInstance.detectedTree = other.gameObject;
+            CuttingManager.cuttingManagerInstance.detectedTree = other.gameObject.GetComponent<scr_tree_behavior>();
             CuttingManager.cuttingManagerInstance.treeIsInZone = true;
 
 
