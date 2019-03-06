@@ -25,13 +25,11 @@ public class DetectionBehaviour : MonoBehaviour
     {
         if (other.tag == "Tree")
         {
-            print("dodo");
             localDetectedTree = other.gameObject;
             localTreeIsInZone = true;
 
             CuttingManager.cuttingManagerInstance.detectedTree = other.gameObject.GetComponent<scr_tree_behavior>();
             CuttingManager.cuttingManagerInstance.treeIsInZone = true;
-
 
         }
     }
@@ -40,12 +38,12 @@ public class DetectionBehaviour : MonoBehaviour
     {
         if (localDetectedTree != null && other.gameObject == localDetectedTree)
         {
-            print("dada");
             localDetectedTree = null;
             localTreeIsInZone = false;
 
-            CuttingManager.cuttingManagerInstance.detectedTree = null;
-            CuttingManager.cuttingManagerInstance.treeIsInZone = false;
+            CuttingManager.cuttingManagerInstance.UnregisterTree();
         }
     }
+
+
 }

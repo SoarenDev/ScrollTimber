@@ -92,16 +92,17 @@ public class CuttingManager : MonoBehaviour
         if (treeIsInZone)
         {
             treeVector = detectedTree.weak_point_direction;
+            if (hasAnActualSwipe)
+            {
+                detectedTree.CutTree(ComparingSwipeAndTree());
+            }
         }
 
         Debug.DrawRay(Vector2.zero, treeVector * 5, Color.green);
 
         publicSwipeVectorDirection = GetSwipingDirection();
 
-        if (hasAnActualSwipe)
-        {
-            detectedTree.CutTree( ComparingSwipeAndTree() );
-        }
+        
     }
 
     // = = =
@@ -122,12 +123,12 @@ public class CuttingManager : MonoBehaviour
             {
                 if (treeVector.y < 0)
                 {
-                    print("Y is negative, and angle is valid");
+                    //print("Y is negative, and angle is valid");
                     return cutStateEnum.Perfect;
                 }
                 else if (treeVector.y >= 0)
                 {
-                    print("Y is positive, and angle valid");
+                    //print("Y is positive, and angle valid");
                     return cutStateEnum.Perfect;
                 }
             }
@@ -209,7 +210,6 @@ public class CuttingManager : MonoBehaviour
     {
         if (!isPlayingCoroutine)
         {
-            print("go");
             StartCoroutine(TimeToSwipe());
             isPlayingCoroutine = true;
         }
@@ -269,7 +269,7 @@ public class CuttingManager : MonoBehaviour
 
     private IEnumerator NewSwipeDelay()
     {
-        print("waiting");
+        //print("waiting");
         yield return new WaitForSeconds(timeBetweenSwipes);
         startSwipePosition = Vector2.zero;
         endSwipePosition = Vector2.zero;
@@ -282,7 +282,7 @@ public class CuttingManager : MonoBehaviour
         Vector2 convertedVectorDirection = Vector2.zero;
         float tempY = 0;
         float tempX = 0;
-        print("retrievedDirection :" + retrievedDirection);
+        //print("retrievedDirection :" + retrievedDirection);
         if (retrievedDirection.x < 0)
         {
             tempX = -retrievedDirection.x;
@@ -294,8 +294,14 @@ public class CuttingManager : MonoBehaviour
             tempY = retrievedDirection.y;
         }
         convertedVectorDirection = new Vector2(tempX, tempY);
-        print(convertedVectorDirection);
+        //print(convertedVectorDirection);
         return convertedVectorDirection;
+    }
+
+    public void UnregisterTree()
+    {
+        detectedTree = null;
+        treeIsInZone = false;
     }
 
     // = = =
