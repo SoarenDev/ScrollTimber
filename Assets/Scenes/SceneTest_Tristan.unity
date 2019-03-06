@@ -711,6 +711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88275de32f56d844da98874d6fc26dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  txt_score: {fileID: 0}
+  txt_combo: {fileID: 0}
 --- !u!114 &2009725357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actual_score: 0
   actual_combo: 0
-  ui_behavior_ref: {fileID: 0}
+  ui_behavior_ref: {fileID: 2009725356}
 --- !u!1 &2088347842
 GameObject:
   m_ObjectHideFlags: 0

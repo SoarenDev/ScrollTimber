@@ -17,8 +17,6 @@ public class scr_ui_updater_behavior : MonoBehaviour
 
 // = = = [ MONOBEHAVIOR METHODS ] = = =
 
-
-
 // = = =
 
 // = = = [ CLASS METHODS ] = = =
