@@ -1119,6 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGamePaused: 0
+  scroll_cylinder_parent: {fileID: 617525594}
 --- !u!114 &2009725355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,5 +1300,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5454450172727215820, guid: 8e097c9cea7ca764289ace4e97c65fff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0671a94d5e417f6429d403ae869555fc, type: 2}
+    - target: {fileID: 5454450172727215822, guid: 8e097c9cea7ca764289ace4e97c65fff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8b156ada46a67746b03828f9d45a693, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e097c9cea7ca764289ace4e97c65fff, type: 3}

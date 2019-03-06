@@ -1,63 +1,16 @@
 fileFormatVersion: 2
-guid: ebdf23730a93c2b4b9fd53b60f5f2031
+guid: fc9afea4d634365459dab3ff95307958
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Bone001
-    100002: Bone002
-    100004: Bone003
-    100006: Bone005
-    100008: Bone006
-    100010: Bone007
-    100012: Bone008
-    100014: Bone009
-    100016: Bone010
-    100018: Bone011
-    100020: Bone012
-    100022: Bone013
-    100024: ChamferBox002
-    100026: Object006
-    100028: Object007
-    100030: Object008
-    100032: Object009
-    100034: Object010
-    100036: Particle View 001
-    100038: //RootNode
-    400000: Bone001
-    400002: Bone002
-    400004: Bone003
-    400006: Bone005
-    400008: Bone006
-    400010: Bone007
-    400012: Bone008
-    400014: Bone009
-    400016: Bone010
-    400018: Bone011
-    400020: Bone012
-    400022: Bone013
-    400024: ChamferBox002
-    400026: Object006
-    400028: Object007
-    400030: Object008
-    400032: Object009
-    400034: Object010
-    400036: Particle View 001
-    400038: //RootNode
-    2100000: No Name
-    4300000: ChamferBox002
-    4300002: Object006
-    4300004: Object007
-    4300006: Object008
-    4300008: Object009
-    4300010: Object010
+    100000: //RootNode
+    400000: //RootNode
+    2100000: 'Material #26'
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cylinder006
     7400000: Take 001
     9500000: //RootNode
-    13700000: ChamferBox002
-    13700002: Object006
-    13700004: Object007
-    13700006: Object008
-    13700008: Object009
-    13700010: Object010
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -85,35 +38,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 25
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

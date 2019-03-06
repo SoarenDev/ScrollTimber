@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
 
 // = = = [ VARIABLES DEFINITION ] = = =
     
-    public  bool        isGamePaused        = false;
+    public  bool            isGamePaused                        = false;
+
+[Space(10)][Header("References")]
+    public  GameObject      scroll_cylinder_parent              ;
+
 
 // = = =
 
