@@ -22,7 +22,11 @@ public class CutFx : MonoBehaviour
 
     void Update()
     {
-
+        print("timescale = " + Time.timeScale);
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(OnTreeCut());
+        }
     }
 
     public IEnumerator OnTreeCut()
@@ -38,7 +42,7 @@ public class CutFx : MonoBehaviour
             if (time >= maxSlowMoLength)
             {
                 //retour smooth du temps à la normale
-                Time.timeScale = slowMoFactor + (1 - slowMoFactor) * ((curveLength - time) / (curveLength - maxSlowMoLength));
+                Time.timeScale = slowMoFactor + (1 - slowMoFactor) * ((time - maxSlowMoLength) / (curveLength - maxSlowMoLength));
                 Time.fixedDeltaTime = initialFixedDeltaTime * Time.timeScale;
             }
             yield return null;

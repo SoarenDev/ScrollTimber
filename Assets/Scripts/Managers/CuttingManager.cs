@@ -30,7 +30,7 @@ public class CuttingManager : MonoBehaviour
     public float timeBetweenSwipes = 0.2f;
     public float vectorComparisonOffset = 10;
     public float minimumDeltaSwipe = 30f;
-
+    public GameObject slowMoManager;
 
     bool canSwipe;
     bool isPlayingCoroutine;
@@ -128,12 +128,13 @@ public class CuttingManager : MonoBehaviour
                 if (treeVector.y < 0)
                 {
                     //print("Y is negative, and angle is valid");
+                    StartCoroutine(slowMoManager.GetComponent<CutFx>().OnTreeCut());
                     return cutStateEnum.Perfect;
-                    //StartCoroutine(OnTreeCut());
                 }
                 else if (treeVector.y >= 0)
                 {
                     //print("Y is positive, and angle valid");
+                    StartCoroutine(slowMoManager.GetComponent<CutFx>().OnTreeCut());
                     return cutStateEnum.Perfect;
                 }
             }
