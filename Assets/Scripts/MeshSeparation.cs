@@ -29,7 +29,7 @@ public class MeshSeparation : MonoBehaviour
         return;
     }
 
-    void OnCut(float angle, float height)
+    public void OnCut(float angle, float height)
     {
         upperObjectInstance = Instantiate(upperObjectToSpawn, transform.position, transform.rotation, scrollCylinderParent.transform);
         upperMesh = upperObjectInstance.GetComponent<MeshFilter>().mesh;

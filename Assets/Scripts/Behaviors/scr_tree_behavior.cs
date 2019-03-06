@@ -85,7 +85,6 @@ public class scr_tree_behavior : MonoBehaviour
                 Debug.Log("SUCCESS");
                 CuttingManager.cuttingManagerInstance.UnregisterTree();
                 ScoreManager.instance.AddScore(1 + ScoreManager.instance.actual_combo);
-                Destroy(this.gameObject);
             break;
 
             case cutStateEnum.Perfect:
@@ -93,7 +92,6 @@ public class scr_tree_behavior : MonoBehaviour
                 CuttingManager.cuttingManagerInstance.UnregisterTree();
                 ScoreManager.instance.AddCombo(1);
                 ScoreManager.instance.AddScore(1 + ScoreManager.instance.actual_combo);
-                Destroy(this.gameObject);
                 break;
         }
 

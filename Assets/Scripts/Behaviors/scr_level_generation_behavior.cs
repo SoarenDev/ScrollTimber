@@ -25,6 +25,7 @@ public class scr_level_generation_behavior : MonoBehaviour
     /// </summary>
     void Start()
     {
+        StartLevelGeneration();
     }
 
 // = = =

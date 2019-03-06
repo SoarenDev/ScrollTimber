@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum cutStateEnum
 {
     Failed,
     Success,
-    Perfect        
+    Perfect
 }
 
 public class CuttingManager : MonoBehaviour
@@ -29,7 +30,7 @@ public class CuttingManager : MonoBehaviour
     public float timeBetweenSwipes = 0.2f;
     public float vectorComparisonOffset = 10;
     public float minimumDeltaSwipe = 30f;
-    
+
 
     bool canSwipe;
     bool isPlayingCoroutine;
@@ -95,7 +96,9 @@ public class CuttingManager : MonoBehaviour
             treeVector = detectedTree.weak_point_direction;
             if (hasAnActualSwipe)
             {
+                detectedTree.GetComponent<MeshSeparation>().OnCut(Vector2.SignedAngle(Vector2.right, publicSwipeVectorDirection), 0.1f);
                 detectedTree.CutTree(ComparingSwipeAndTree());
+                
             }
         }
 
@@ -103,6 +106,7 @@ public class CuttingManager : MonoBehaviour
 
         publicSwipeVectorDirection = GetSwipingDirection();
 
+        //print("delta = " + touch.deltaPosition.magnitude);
     }
 
     // = = =
@@ -115,7 +119,7 @@ public class CuttingManager : MonoBehaviour
         float playerSwipeAngle = Vector2.SignedAngle(Vector2.right, publicSwipeVectorDirection);
         float treeSwipeAngle = Vector2.SignedAngle(Vector2.right, treeVector);
 
-        print("Comparing " + playerSwipeAngle + " with " + treeSwipeAngle);
+        //print("Comparing " + playerSwipeAngle + " with " + treeSwipeAngle);
 
         if (playerSwipeAngle > (treeSwipeAngle - vectorComparisonOffset))
         {
@@ -143,6 +147,12 @@ public class CuttingManager : MonoBehaviour
         if (Input.touchCount > 0 && !isGamePaused)
         {
             touch = Input.GetTouch(0);    //on récupère l'input du PREMIER doigt qui touche (index 0)
+            Vector2 touchPos = touch.position;
+
+            Vector2 transformedPos = new Vector2(touchPos.x / 180, touchPos.y / 170); // position du doigt en coordonnées monde (puisque le capté de base est en pixel)
+            //print("touchPos : " + touchPos + "Which becomes : " + transformedPos);
+            pointingTool.transform.position = transformedPos;                         // La position du debugPositionTool est suit celle du doigt
+
             if (!hasAnActualSwipe)
             {
                 actualSwipe = SwipingWithTime();
@@ -173,7 +183,7 @@ public class CuttingManager : MonoBehaviour
         else
         {
             hasAStartPosition = false;
-            
+
             isPlayingCoroutine = false;
         }
 
@@ -224,10 +234,6 @@ public class CuttingManager : MonoBehaviour
         if (canSwipe)                            //Pendant un temps donné (cf TimeToSwipe) on va récupérer la position du doigt sur l'écran pour en faire le point de fin du swipe
         {
 
-            //Vector2 transformedPos = new Vector2(touchPos.x / 180, touchPos.y / 170); // position du doigt en coordonnées monde (puisque le capté de base est en pixel)
-            //print("touchPos : " + touchPos + "Which becomes : " + transformedPos);
-            //pointingTool.transform.position = transformedPos;                         // La position du debugPositionTool est suit celle du doigt
-
             Vector2 tempEndSwipePosition = touch.position;
 
             Vector2 tempSwipeVector = (tempEndSwipePosition - startSwipePosition);      //vector entre le point de départ et la position du doigt actuelle
@@ -238,7 +244,7 @@ public class CuttingManager : MonoBehaviour
                 swipeVector = (endSwipePosition - startSwipePosition);
             }
 
-            
+
         }
         else if (!canSwipe)
         {
@@ -306,3 +312,4 @@ public class CuttingManager : MonoBehaviour
 
     // = = =
 }
+
