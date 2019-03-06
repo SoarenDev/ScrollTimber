@@ -16,9 +16,10 @@ public class CuttingManager : MonoBehaviour
     public GameObject pointingTool;
     private Camera mainCamera;
     private Touch touch;
-    public float swipeWindowTime; // The time you have to trace a swipe
-    public float minimumSwipeLenght; // The minimum length (en pixels) of the vector made with swipe needed to be valid
-    public float timeBetweenSwipes;
+
+    public float swipeWindowTime = 0.5f; // The time you have to trace a swipe
+    public float minimumSwipeLenght = 200f; // The minimum length (en pixels) of the vector made with swipe needed to be valid
+    public float timeBetweenSwipes = 0.2f;
 
     bool canSwipe;
     bool isPlayingCoroutine;
@@ -32,7 +33,7 @@ public class CuttingManager : MonoBehaviour
 
     private Vector2 swipeVector;
 
-    public bool isGamePaused = false;
+    public bool isGamePaused = false;       // a relinker proprement avec le game manager
 
     // = = = [ VARIABLES DEFINITION ] = = =
 
@@ -75,6 +76,15 @@ public class CuttingManager : MonoBehaviour
 
     private void Update()
     {
+        GetSwipingDirection();
+    }
+
+    // = = =
+
+    // = = = [ CLASS METHODS ] = = =
+
+    public Vector2 GetSwipingDirection()
+    {
         if (Input.touchCount > 0 && !isGamePaused)
         {
             touch = Input.GetTouch(0);    //on récupère l'input du PREMIER doigt qui touche (index 0)
@@ -87,7 +97,7 @@ public class CuttingManager : MonoBehaviour
                     endSwipePosition = touch.position;
                     swipeVector = endSwipePosition - startSwipePosition;
 
-                    print("length = " + swipeVector.magnitude);
+                    //print("length = " + swipeVector.magnitude);
 
                     if (swipeVector.magnitude >= minimumSwipeLenght)    // si le vector créé est assez long pour être considéré valide
                     {
@@ -112,11 +122,8 @@ public class CuttingManager : MonoBehaviour
             isPlayingCoroutine = false;
         }
 
+        return swipeDirection;
     }
-
-    // = = =
-
-    // = = = [ CLASS METHODS ] = = =
 
     private void PositionTouching()
     {
@@ -235,6 +242,13 @@ public class CuttingManager : MonoBehaviour
         convertedVectorDirection = new Vector2(tempX, tempY);
         print(convertedVectorDirection);
         return convertedVectorDirection;
+    }
+
+    public enum cutStateEnum
+    {
+        Failed,
+        Success,
+        Perfect
     }
 
     // = = =

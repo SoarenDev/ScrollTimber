@@ -588,7 +588,7 @@ MonoBehaviour:
   tex: {fileID: 2800000, guid: 8093afc26e7e723419642e72f3924e84, type: 3}
   pointingTool: {fileID: 952018863}
   swipeWindowTime: 0.5
-  minimumSwipeLenght: 2
+  minimumSwipeLenght: 300
   timeBetweenSwipes: 0.2
   startSwipePosition: {x: 0, y: 0}
   endSwipePosition: {x: 0, y: 0}
