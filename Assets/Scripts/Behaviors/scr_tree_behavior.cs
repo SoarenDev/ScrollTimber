@@ -74,6 +74,16 @@ public class scr_tree_behavior : MonoBehaviour
 		return (direction_vector / normalize_factor);
 	}
 
+    /// <summary>
+	/// Called by the cutting manager when the tree is cutted by the player.
+	/// </summary>
+	public void CutTree()
+	{
+        
+        return;
+    }
+
+
 // = = =
 
 }
