@@ -22,11 +22,7 @@ public class CutFx : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            //StartCoroutine(OnTreeCut());
-            Metadesc.CameraShake.ShakeManager.I.AddShake("CutShake");
-        }
+
     }
 
     public IEnumerator OnTreeCut()

@@ -129,6 +129,7 @@ public class CuttingManager : MonoBehaviour
                 {
                     //print("Y is negative, and angle is valid");
                     return cutStateEnum.Perfect;
+                    //StartCoroutine(OnTreeCut());
                 }
                 else if (treeVector.y >= 0)
                 {
@@ -137,7 +138,7 @@ public class CuttingManager : MonoBehaviour
                 }
             }
         }
-
+        Metadesc.CameraShake.ShakeManager.I.AddShake("CutShake");
         return cutStateEnum.Success; // si on a pas eu un autre return, on joue celui-ci de base
     }
 

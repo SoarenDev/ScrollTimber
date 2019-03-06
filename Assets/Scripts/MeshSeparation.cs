@@ -20,7 +20,6 @@ public class MeshSeparation : MonoBehaviour
     void Start()
     {
         InitializeVariables();
-        // OnCut(45f, 0.1f);
     }
 
     void InitializeVariables()

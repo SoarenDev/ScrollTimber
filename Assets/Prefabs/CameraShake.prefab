@@ -123,7 +123,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   PositionBasedInflunceFactor: 1
-  ShakeDuration: 1
+  ShakeDuration: 0.25
   ShakeSampleTimeDistanceMin: 0.01
   ShakeSampleTimeDistanceMax: 0.02
   ValueMovementTypePos: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: -0.0016899109
-      value: 20
+      value: 3
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -320,9 +320,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ValueMovementTypeRot: 0
-  RotationSpeed: 10
+  RotationSpeed: 2
   MinRotation: {x: 2, y: 2, z: 2}
-  MaxRotation: {x: 50, y: 50, z: 50}
+  MaxRotation: {x: 35, y: 35, z: 35}
   ShakeRotationWeightX:
     serializedVersion: 2
     m_Curve:
