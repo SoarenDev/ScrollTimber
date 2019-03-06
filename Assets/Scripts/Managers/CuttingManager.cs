@@ -28,6 +28,7 @@ public class CuttingManager : MonoBehaviour
     public float minimumSwipeLenght = 200f; // The minimum length (en pixels) of the vector made with swipe needed to be valid
     public float timeBetweenSwipes = 0.2f;
     public float vectorComparisonOffset = 10;
+    public float minimumDeltaSwipe = 30f;
     
 
     bool canSwipe;
@@ -102,7 +103,7 @@ public class CuttingManager : MonoBehaviour
 
         publicSwipeVectorDirection = GetSwipingDirection();
 
-        
+        print("delta = " + touch.deltaPosition.magnitude);
     }
 
     // = = =
@@ -145,9 +146,9 @@ public class CuttingManager : MonoBehaviour
             touch = Input.GetTouch(0);    //on récupère l'input du PREMIER doigt qui touche (index 0)
             if (!hasAnActualSwipe)
             {
-                actualSwipe = Swiping();
+                actualSwipe = SwipingWithTime();
 
-                if (!hasAnActualSwipe && touch.phase == TouchPhase.Ended)
+                if (!hasAnActualSwipe && touch.phase == TouchPhase.Ended || touch.deltaPosition.magnitude < minimumDeltaSwipe)
                 {
                     endSwipePosition = touch.position;
                     swipeVector = endSwipePosition - startSwipePosition;
@@ -206,14 +207,13 @@ public class CuttingManager : MonoBehaviour
         return;
     }
 
-    private Vector2 Swiping()
+    private Vector2 SwipingWithTime()
     {
         if (!isPlayingCoroutine)
         {
             StartCoroutine(TimeToSwipe());
             isPlayingCoroutine = true;
         }
-
 
         Vector2 touchPos = touch.position;
         if (!hasAStartPosition)
@@ -224,7 +224,6 @@ public class CuttingManager : MonoBehaviour
 
         if (canSwipe)                            //Pendant un temps donné (cf TimeToSwipe) on va récupérer la position du doigt sur l'écran pour en faire le point de fin du swipe
         {
-
 
             //Vector2 transformedPos = new Vector2(touchPos.x / 180, touchPos.y / 170); // position du doigt en coordonnées monde (puisque le capté de base est en pixel)
             //print("touchPos : " + touchPos + "Which becomes : " + transformedPos);
@@ -239,6 +238,8 @@ public class CuttingManager : MonoBehaviour
                 endSwipePosition = tempEndSwipePosition;                                //la position du doigt devient la nouvelle fin de swipe
                 swipeVector = (endSwipePosition - startSwipePosition);
             }
+
+            
         }
         else if (!canSwipe)
         {
