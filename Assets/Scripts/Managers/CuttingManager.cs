@@ -20,16 +20,23 @@ public class CuttingManager : MonoBehaviour
     public float swipeWindowTime = 0.5f; // The time you have to trace a swipe
     public float minimumSwipeLenght = 200f; // The minimum length (en pixels) of the vector made with swipe needed to be valid
     public float timeBetweenSwipes = 0.2f;
+    public float vectorComparisonOffset = 10;
+    public Collider treeDetectionZone;
+    
 
     bool canSwipe;
     bool isPlayingCoroutine;
     Vector2 actualSwipe;
     bool hasAStartPosition;
     bool hasAnActualSwipe;
+    bool treeIsInZone;
 
     public Vector2 startSwipePosition;
     public Vector2 endSwipePosition;
-    public Vector2 swipeDirection;
+    private Vector2 swipeDirection;
+    public Vector2 publicSwipeVectorDirection;
+    public GameObject detectedTree;
+    public Vector2 treeVector;
 
     private Vector2 swipeVector;
 
@@ -76,12 +83,70 @@ public class CuttingManager : MonoBehaviour
 
     private void Update()
     {
-        GetSwipingDirection();
+        if (treeIsInZone)
+        {
+            treeVector = detectedTree.GetComponent<scr_tree_behavior>().weak_point_direction;
+        }
+
+        Debug.DrawRay(Vector2.zero, treeVector * 5, Color.green);
+
+        publicSwipeVectorDirection = GetSwipingDirection();
+
+        if (hasAnActualSwipe)
+        {
+            ComparingSwipeAndTree();
+        }
     }
 
     // = = =
 
     // = = = [ CLASS METHODS ] = = =
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Tree")
+        {
+            detectedTree = other.gameObject ;
+            treeIsInZone = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (detectedTree != null && other.gameObject == detectedTree)
+        {
+            detectedTree = null;
+            treeIsInZone = false;
+        }
+    }
+
+    public cutStateEnum ComparingSwipeAndTree()
+    {
+        float playerSwipeAngle = Vector2.SignedAngle(Vector2.right, publicSwipeVectorDirection);
+        float treeSwipeAngle = Vector2.SignedAngle(Vector2.right, treeVector);
+
+        print("Comparing " + playerSwipeAngle + " with " + treeSwipeAngle);
+
+        if (playerSwipeAngle > (treeSwipeAngle - vectorComparisonOffset))
+        {
+            if (playerSwipeAngle < (treeSwipeAngle + vectorComparisonOffset))
+            {
+                if (treeVector.y < 0)
+                {
+                    print("Y is negative, and angle is valid");
+                    return cutStateEnum.Perfect;
+                }
+                else if (treeVector.y >= 0)
+                {
+                    print("Y is positive, and angle valid");
+                    return cutStateEnum.Perfect;
+                }
+            }
+        }
+
+        return cutStateEnum.Success; // si on a pas eu un autre return, on joue celui-ci de base
+    }
+
 
     public Vector2 GetSwipingDirection()
     {
@@ -106,7 +171,7 @@ public class CuttingManager : MonoBehaviour
 
                         hasAnActualSwipe = true;
                         isPlayingCoroutine = false;
-
+                        StartCoroutine(NewSwipeDelay());
                     }
                 }
             }
@@ -118,7 +183,7 @@ public class CuttingManager : MonoBehaviour
         else
         {
             hasAStartPosition = false;
-            swipeDirection = Vector2.zero;
+            
             isPlayingCoroutine = false;
         }
 
@@ -171,7 +236,7 @@ public class CuttingManager : MonoBehaviour
         if (canSwipe)                            //Pendant un temps donné (cf TimeToSwipe) on va récupérer la position du doigt sur l'écran pour en faire le point de fin du swipe
         {
 
-        
+
             //Vector2 transformedPos = new Vector2(touchPos.x / 180, touchPos.y / 170); // position du doigt en coordonnées monde (puisque le capté de base est en pixel)
             //print("touchPos : " + touchPos + "Which becomes : " + transformedPos);
             //pointingTool.transform.position = transformedPos;                         // La position du debugPositionTool est suit celle du doigt
@@ -191,7 +256,7 @@ public class CuttingManager : MonoBehaviour
             if (swipeVector.magnitude >= minimumSwipeLenght)                        // si le vector créé est assez long pour être considéré valide
             {
                 swipeDirection = DirectionConverter(swipeVector.normalized);        // la direction du swipe normalisée et orientée
-                Debug.DrawRay(startSwipePosition, swipeDirection*3, Color.red, 1f);
+                Debug.DrawRay(startSwipePosition, swipeDirection * 3, Color.red, 1f);
                 hasAnActualSwipe = true;
                 isPlayingCoroutine = false;
 

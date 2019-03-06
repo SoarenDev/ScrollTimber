@@ -442,6 +442,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952018863}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &978545732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 978545733}
+  - component: {fileID: 978545734}
+  m_Layer: 0
+  m_Name: TouchingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &978545733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978545732}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3682468, y: 8.496427, z: 2.7055874}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1839003992}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &978545734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978545732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71513b1221875cc4dbde3884ee23dc8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchingPos: {x: 0, y: 0}
+  publicTouchingBool: 0
+  isGamePaused: 0
 --- !u!1 &1719118728
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +585,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1992217173}
+  - {fileID: 978545733}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -588,9 +635,11 @@ MonoBehaviour:
   tex: {fileID: 2800000, guid: 8093afc26e7e723419642e72f3924e84, type: 3}
   pointingTool: {fileID: 952018863}
   swipeWindowTime: 0.5
-  minimumSwipeLenght: 300
-  timeBetweenSwipes: 0.2
+  minimumSwipeLenght: 200
+  timeBetweenSwipes: 0.1
+  vectorComparisonOffset: 12
   startSwipePosition: {x: 0, y: 0}
   endSwipePosition: {x: 0, y: 0}
-  swipeDirection: {x: 0, y: 0}
+  publicSwipeVectorDirection: {x: 0, y: 0}
+  treeVector: {x: 0, y: 0}
   isGamePaused: 0
