@@ -41,6 +41,7 @@ public class ScoreManager : MonoBehaviour
         // Check references
         if (ui_behavior_ref == null)
         { Debug.LogError("ERROR: UI BEHAVIOR REFERENCE MISSING! All UI updates will return an error!"); }
+
     }
 
 // = = =
