@@ -105,6 +105,16 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// .
+    /// </summary>
+    public void ReturnToMenu()
+    {
+        // ensure the stopping of actual level generation
+        ScrollingManager.instance.level_generation_script_ref.ResetLevelGeneration();
+        return;
+    }
+
+    /// <summary>
     /// Called when the player wins the level.
     /// </summary>
     public void LevelSuccess()
@@ -140,6 +150,10 @@ public class GameManager : MonoBehaviour
         FailsCount += 1;
         RemainingTrees -= 1;
         ScoreManager.instance.ResetCombo();
+
+        // remove tree from generated list
+        ScrollingManager.instance.level_generation_script_ref.generated_trees.Remove(missed_object);
+
         Destroy(missed_object, 1.0f);
 
         return;

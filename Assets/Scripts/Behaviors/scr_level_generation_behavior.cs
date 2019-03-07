@@ -8,12 +8,13 @@ public class scr_level_generation_behavior : MonoBehaviour
 // = = = [ VARIABLES DEFINITION ] = = =
 
 [Space(10)][Header("Runtime")]
-    [SerializeField]    private int             actual_generation_index             ;
-                        private Coroutine       generation_coroutine                ;   
+    [SerializeField]    private int                 actual_generation_index             ;
+                        private Coroutine           generation_coroutine                ;  
+                        public List<GameObject>     generated_trees                     ; 
 
 [Space(10)][Header("References")]
-                        public  GameObject      generation_spawn_point_ref          ;
-                        public  GameObject      generated_objects_container_ref     ;
+                        public  GameObject          generation_spawn_point_ref          ;
+                        public  GameObject          generated_objects_container_ref     ;
        
 // = = =
 
@@ -37,6 +38,7 @@ public class scr_level_generation_behavior : MonoBehaviour
     /// </summary>
     public void ResetLevelGeneration()
     {
+        StopAllCoroutines();
         actual_generation_index = 0;
 
         return;
@@ -65,6 +67,9 @@ public class scr_level_generation_behavior : MonoBehaviour
 
         instance = Instantiate(object_to_generate, generation_spawn_point_ref.transform.position, Quaternion.identity);
         instance.transform.SetParent(generated_objects_container_ref.transform, true);
+
+        // add generated tree to generated list
+        generated_trees.Add(instance);
 
         Debug.Log("Level item generated");
 

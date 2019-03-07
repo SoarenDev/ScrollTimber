@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 88f11beeb6c75774182702c258601f37
+guid: d223090af13cb51498adf73a9cc40fc0
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -315,16 +315,10 @@ ModelImporter:
     400306: s089
     400308: //RootNode
     400310: Tube001
-    2100000: 'Material #55'
-    2100002: 'Material #53'
-    2100004: 'Material #57'
-    2100006: 'Material #56'
-    2100008: 'Material #58'
-    2100010: 'Material #54'
-    2100012: 'Material #52'
-    2100014: 'Material #37'
-    2100016: 'Material #36'
-    2100018: 'Material #35'
+    2100000: 'Material #64'
+    2100002: 'Material #37'
+    2100004: 'Material #36'
+    2100006: 'Material #35'
     2300000: Object001
     2300002: Object003
     2300004: Object004

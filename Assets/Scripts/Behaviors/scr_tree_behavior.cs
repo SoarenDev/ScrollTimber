@@ -97,6 +97,9 @@ public class scr_tree_behavior : MonoBehaviour
 
         GameManager.instance.RemainingTrees -= 1;
 
+        // remove tree from generated list
+        ScrollingManager.instance.level_generation_script_ref.generated_trees.Remove(this.gameObject);
+
         return;
     }
 
