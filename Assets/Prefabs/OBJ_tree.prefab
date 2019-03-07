@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weak_point_direction: {x: 0, y: 0, z: 0}
+  base_gained_score: 1
   weak_point_direction_max: 0.5
   anglesList: e2ffffffc4ffffff000000001e0000003c000000
   decal_prefabs:

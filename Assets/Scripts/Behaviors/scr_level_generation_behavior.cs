@@ -66,7 +66,7 @@ public class scr_level_generation_behavior : MonoBehaviour
     {
         GameObject instance;
 
-        instance = Instantiate(object_to_generate, generation_spawn_point_ref.transform.position, Quaternion.identity);
+        instance = Instantiate(object_to_generate, generation_spawn_point_ref.transform.position, Quaternion.Euler(-50,0,0) );
         instance.transform.SetParent(generated_objects_container_ref.transform, true);
 
         //modifies the mesh of the newly-created GameObject

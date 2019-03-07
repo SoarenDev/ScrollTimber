@@ -21,14 +21,15 @@ MonoBehaviour:
   - {fileID: 4300000, guid: 517b37f2673b6de48ae878dae3c2de61, type: 3}
   - {fileID: 4300000, guid: 7ec44b120772946418e81b2c09100a02, type: 3}
   best_score: 0
+  level_scroll_speed: 5
   generation_list:
-  - delay_before_generation: 1
-  - delay_before_generation: 1
-  - delay_before_generation: 0.5
-  - delay_before_generation: 0.5
-  - delay_before_generation: 2
-  - delay_before_generation: 0.5
-  - delay_before_generation: 0.5
-  - delay_before_generation: 0.5
-  - delay_before_generation: 0.5
-  - delay_before_generation: 1
+  - delay_before_generation: 0
+  - delay_before_generation: 4
+  - delay_before_generation: 3
+  - delay_before_generation: 3
+  - delay_before_generation: 4
+  - delay_before_generation: 2.5
+  - delay_before_generation: 2.5
+  - delay_before_generation: 4
+  - delay_before_generation: 3
+  - delay_before_generation: 2.5
