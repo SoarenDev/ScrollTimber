@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
 
                 // update ui visibility
                 ui_success_menu_parent.SetActive(true);
-                ui_total_money_container.SetActive(false);
+                ui_total_money_container.SetActive(true);
 
                 // change car anim state
                 car_animator_ref.SetBool("isMoving", false);
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
 
                 // update ui visibility
                 ui_failure_menu_parent.SetActive(true);
-                ui_total_money_container.SetActive(false);
+                ui_total_money_container.SetActive(true);
 
                 // change car anim state
                 car_animator_ref.SetBool("isMoving", false);
