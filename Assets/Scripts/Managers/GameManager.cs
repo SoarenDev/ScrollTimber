@@ -37,10 +37,12 @@ public class GameManager : MonoBehaviour
     public  GameObject                  ui_failure_menu_parent              ;
     public  GameObject                  ui_score_container                  ;
     public  GameObject                  ui_total_money_container            ;
+    public GameObject part_system_good;
+    public GameObject part_system_perfect;
+    public GameObject part_system_fail;
+    // = = =
 
-// = = =
-
-// = = = [ VARIABLES PROPERTIES ] = = =
+    // = = = [ VARIABLES PROPERTIES ] = = =
 
     public int FailsCount
     {
