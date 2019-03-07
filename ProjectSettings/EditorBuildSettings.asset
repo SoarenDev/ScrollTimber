@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Scene Alex.unity
     guid: 1dc8c06d0af6ff04d9872255bf18f756
+  - enabled: 0
+    path: Assets/Scenes/SceneTestTristan.unity
+    guid: 70ac38d4d435bc148892d067ce5c6785
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 865fe569fe392144685aca8bfe375e50
   m_configObjects: {}
