@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     public  GameObject                  part_system_good;
     public  GameObject                  part_system_perfect;
     public  GameObject                  part_system_fail;
-    public  GameObject                  tutorial_image_prefab               ;
+    public  GameObject                  tutorial_image_ref                  ;
     // = = =
 
     // = = = [ VARIABLES PROPERTIES ] = = =
@@ -193,9 +193,8 @@ public class GameManager : MonoBehaviour
         // display tutorial image if it's the FIRST LEVEL
         if ( LevelsManager.instance.actual_level == 1 )
         {
-            GameObject instance;
-            instance = Instantiate(tutorial_image_prefab, new Vector3 (606, 540, 0), Quaternion.identity, ui_canvas_reference.transform );
-            Destroy(instance, 10.00f);
+            tutorial_image_ref.SetActive(true);
+            Destroy(tutorial_image_ref, 10.00f);
         }
 
         // change game state
