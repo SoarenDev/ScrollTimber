@@ -21,7 +21,6 @@ public class scr_tree_behavior : MonoBehaviour
     {
         GenerateAppearance();
         InitializeWeakPoint();
-        InitializeSelfDestruction(15.00f);
     }
 
 // = = =
@@ -49,11 +48,10 @@ public class scr_tree_behavior : MonoBehaviour
     }
 
     /// <summary>
-	/// Initialises the object self destruction after a given amount of time.
+	/// [OBSOLETE] Initialises the object self destruction after a given amount of time.
 	/// </summary>
 	public void InitializeSelfDestruction(float delay)
 	{
-        Destroy(gameObject, delay);
         return;
     }
 

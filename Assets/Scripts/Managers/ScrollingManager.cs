@@ -8,9 +8,6 @@ public class ScrollingManager : MonoBehaviour
     
 // = = = [ VARIABLES DEFINITION ] = = =
 
-[Space(10)][Header("Runtime")]
-    public bool                                 is_scrolling_disabled           = false;
-
 [Space(10)][Header("References")]
     public GameObject                           parent_scroll_cylinder_ref      ;
     public scr_level_generation_behavior        level_generation_script_ref     ;

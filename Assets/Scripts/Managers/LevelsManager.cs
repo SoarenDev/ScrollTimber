@@ -47,9 +47,9 @@ public class LevelsManager : MonoBehaviour
 
 // = = = [ CLASS METHODS ] = = =
 
-    // <summary>
-    // Transforms every database's lists into dictionnaries, placing them at their right ID position in the database.
-    // </summary>
+    /// <summary>
+    /// Transforms every database's lists into dictionnaries, placing them at their right ID position in the database.
+    /// </summary>
     void InitializeDictionnaries()
     {
         // LEVEL DATA
@@ -67,9 +67,9 @@ public class LevelsManager : MonoBehaviour
         return;
     }
 
-    // <summary>
-    // Resets every game data related to the level the player was currently playing.
-    // </summary>
+    /// <summary>
+    /// Resets every game data related to the level the player was currently playing.
+    /// </summary>
     public void ResetLevelState()
     {
         // reset score
@@ -82,6 +82,15 @@ public class LevelsManager : MonoBehaviour
         // remaining trees
         GameManager.instance.RemainingTrees = -1;      // set to -1 to avoid triggering the LevelSuccess of the propertie
 
+        return;
+    }
+
+    /// <summary>
+    /// Increases the actual level index to sets the player at the next in-game level.
+    /// </summary>
+    public void MoveToNextLevel()
+    {
+        actual_level += 1;
         return;
     }
 

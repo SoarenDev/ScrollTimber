@@ -26,7 +26,6 @@ public class scr_level_generation_behavior : MonoBehaviour
     /// </summary>
     void Start()
     {
-        StartLevelGeneration();
     }
 
 // = = =
@@ -39,6 +38,7 @@ public class scr_level_generation_behavior : MonoBehaviour
     public void ResetLevelGeneration()
     {
         StopAllCoroutines();
+        ClearLevelObjects();
         actual_generation_index = 0;
 
         return;
@@ -72,6 +72,22 @@ public class scr_level_generation_behavior : MonoBehaviour
         generated_trees.Add(instance);
 
         Debug.Log("Level item generated");
+
+        return;
+    }
+
+    /// <summary>
+    /// Clears every generated level object.
+    /// </summary>
+    public void ClearLevelObjects()
+    {
+        List<GameObject> buffer_list = new List<GameObject>(generated_trees);
+
+        foreach (GameObject item in buffer_list)
+        {
+            generated_trees.Remove(item);
+            Destroy(item);
+        }
 
         return;
     }
