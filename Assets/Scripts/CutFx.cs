@@ -22,11 +22,7 @@ public class CutFx : MonoBehaviour
 
     void Update()
     {
-        print("timescale = " + Time.timeScale);
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(OnTreeCut());
-        }
+
     }
 
     public IEnumerator OnTreeCut()
