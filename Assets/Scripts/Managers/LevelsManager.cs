@@ -82,9 +82,6 @@ public class LevelsManager : MonoBehaviour
         // remaining trees
         GameManager.instance.RemainingTrees = -1;      // set to -1 to avoid triggering the LevelSuccess of the propertie
 
-        // reset finished level bool
-        GameManager.instance.is_level_finished = false;
-
         return;
     }
 

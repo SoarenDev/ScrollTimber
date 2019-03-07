@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum enum_GameState
+{
+    startmenu,
+    paused,
+    running,
+    endmenu
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -13,12 +21,14 @@ public class GameManager : MonoBehaviour
 
 [Space(10)][Header("Runtime")]
     public  bool            isGamePaused                        = false;
-    public  bool            is_level_finished                   ;
+    public  enum_GameState  game_state                          ;
     public  int             fails_count                         ;
     public  int             remaining_trees                     ;
 
 [Space(10)][Header("References")]
     public  GameObject      scroll_cylinder_parent              ;
+    public  GameObject      ui_main_menu_parent                 ;
+    public  GameObject      ui_score_container                  ;
 
 // = = =
 
@@ -49,7 +59,7 @@ public class GameManager : MonoBehaviour
             remaining_trees = value;
 
             // launch level failure if too many fails
-            if (remaining_trees == 0 && is_level_finished == false )
+            if (remaining_trees == 0 && game_state == enum_GameState.running )
             { LevelSuccess(); }
         }
     }
@@ -77,12 +87,33 @@ public class GameManager : MonoBehaviour
 // = = = [ CLASS METHODS ] = = =
 
     /// <summary>
+    /// Called when the player press the "Play" button; launches the actual level.
+    /// </summary>
+    public void StartGame()
+    {
+        Debug.LogWarning("<b>!!! START GAME !!!</b>");
+
+        LevelsManager.instance.ResetLevelState();
+        ScrollingManager.instance.level_generation_script_ref.StartLevelGeneration();
+
+        // change game state
+        game_state = enum_GameState.running;
+        ui_score_container.SetActive(true);     // a mettre dans method
+        ui_main_menu_parent.SetActive(false);
+
+        return;
+    }
+
+    /// <summary>
     /// Called when the player wins the level.
     /// </summary>
     public void LevelSuccess()
     {
         Debug.LogWarning("<b>LEVEL SUCCESS</b>");
-        is_level_finished = true;
+
+        // change game state
+        game_state = enum_GameState.endmenu;
+
         return;
     }
 
@@ -92,7 +123,10 @@ public class GameManager : MonoBehaviour
     public void LevelFailure()
     {
         Debug.LogWarning("<b>LEVEL FAILURE</b>");
-        is_level_finished = true;
+
+        // change game state
+        game_state = enum_GameState.endmenu;
+
         return;
     }
 
@@ -105,6 +139,7 @@ public class GameManager : MonoBehaviour
 
         FailsCount += 1;
         RemainingTrees -= 1;
+        ScoreManager.instance.ResetCombo();
         Destroy(missed_object, 1.0f);
 
         return;

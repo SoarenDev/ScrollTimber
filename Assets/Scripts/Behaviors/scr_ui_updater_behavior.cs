@@ -9,7 +9,7 @@ public class scr_ui_updater_behavior : MonoBehaviour
 
 // = = = [ VARIABLES DEFINITION ] = = =
 
-[Space(10)][Header("References")]
+[Space(10)][Header("Score")]
     public  TextMeshProUGUI            txt_score                   ;
     public  TextMeshProUGUI            txt_combo                   ;
        

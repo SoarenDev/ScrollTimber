@@ -8,7 +8,7 @@ public class scr_ground_behavior : MonoBehaviour
 // = = = [ VARIABLES DEFINITION ] = = =
 
 [Space(10)][Header("Gameplay")]
-    public  float       scroll_speed            ;
+    public  float       scroll_speed            = 10;
        
 // = = =
 
