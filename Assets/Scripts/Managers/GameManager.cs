@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
 [Space(10)][Header("References")]
     public  scr_ui_updater_behavior     ui_behavior_ref                     ;
+    public  scr_ground_behavior         ground_behavior_ref                 ;
     public  Animator                    car_animator_ref                    ;
     public  GameObject                  scroll_cylinder_parent              ;
     public  GameObject                  ui_main_menu_parent                 ;
@@ -178,7 +179,13 @@ public class GameManager : MonoBehaviour
     {
         Debug.LogWarning("<b>!!! START GAME !!!</b>");
 
+        // reset level state
         LevelsManager.instance.ResetLevelState();
+
+        // initialize level variable from data
+        ground_behavior_ref.scroll_speed = LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].level_scroll_speed;
+
+        // start level objects generation
         ScrollingManager.instance.level_generation_script_ref.StartLevelGeneration();
 
         // change game state

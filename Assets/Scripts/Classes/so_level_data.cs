@@ -18,6 +18,9 @@ public class so_level_data : ScriptableObject
     [Space(5)]
     public  int                                 best_score                  ;
 
+[Space(10)][Header("Gameplay")]
+    public  float                               level_scroll_speed          = 5.00f;
+    
 [Space(10)][Header("Content")]
     public  List<struct_object_to_generate>     generation_list             ;
 

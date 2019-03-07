@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   total_money: 0
-  allowed_fails: 1
+  allowed_fails: 0
   game_state: 0
   fails_count: 0
   remaining_trees: 0
@@ -3181,6 +3181,9 @@ MonoBehaviour:
   ui_failure_menu_parent: {fileID: 34766072}
   ui_score_container: {fileID: 1861043620}
   ui_total_money_container: {fileID: 1127073078}
+  part_system_good: {fileID: 0}
+  part_system_perfect: {fileID: 0}
+  part_system_fail: {fileID: 0}
 --- !u!114 &2009725355
 MonoBehaviour:
   m_ObjectHideFlags: 0
