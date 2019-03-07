@@ -1614,6 +1614,12 @@ MonoBehaviour:
   m_EffectColor: {r: 0.3679245, g: 0.19178283, b: 0.10586506, a: 0.7058824}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!95 &561561608 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1752852499194247398, guid: 8e097c9cea7ca764289ace4e97c65fff,
+    type: 3}
+  m_PrefabInstance: {fileID: 5454450172153862656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &585289162 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5454450172730693578, guid: 8e097c9cea7ca764289ace4e97c65fff,
@@ -3474,9 +3480,12 @@ MonoBehaviour:
   ui_failure_menu_parent: {fileID: 34766072}
   ui_score_container: {fileID: 1861043620}
   ui_total_money_container: {fileID: 1127073078}
-  part_system_good: {fileID: 0}
-  part_system_perfect: {fileID: 0}
-  part_system_fail: {fileID: 0}
+  part_system_good: {fileID: 1639460729295120, guid: 668a68ce84881f1428671d3d093cac3a,
+    type: 3}
+  part_system_perfect: {fileID: 1959025214467312, guid: 1360e643c8e67b941bd1932032ae5b08,
+    type: 3}
+  part_system_fail: {fileID: 1998159104523486, guid: 14a3da36e5bc10f4eb8202f743bfbf3c,
+    type: 3}
 --- !u!114 &2009725355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3552,6 +3561,7 @@ MonoBehaviour:
   publicSwipeVectorDirection: {x: 0, y: 0}
   detectedTree: {fileID: 0}
   treeVector: {x: 0, y: 0}
+  lumberjackAnimator: {fileID: 561561608}
   isGamePaused: 0
 --- !u!1 &2088347842
 GameObject:
