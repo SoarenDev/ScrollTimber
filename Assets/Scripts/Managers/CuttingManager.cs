@@ -92,25 +92,27 @@ public class CuttingManager : MonoBehaviour
 
     private void Update()
     {
-        if (treeIsInZone)
+        if (hasAnActualSwipe)
         {
+            lumberjackAnimator.SetTrigger("Cut");
 
-            treeVector = detectedTree.weak_point_direction;
-
-            if (hasAnActualSwipe)
+            if (treeIsInZone)
             {
 
+                treeVector = detectedTree.weak_point_direction;
+
                 detectedTree.GetComponent<MeshSeparation>().OnCut(Vector2.SignedAngle(Vector2.right, publicSwipeVectorDirection), 0.1f);
-                lumberjackAnimator.SetTrigger("Cut");
+
                 detectedTree.CutTree(ComparingSwipeAndTree());
-                
+
             }
+            hasAnActualSwipe = false;
         }
         publicSwipeVectorDirection = GetSwipingDirection();
 
         Debug.DrawRay(Vector2.zero, treeVector * 5, Color.green);
 
-        
+
 
         //print("delta = " + touch.deltaPosition.magnitude);
     }
