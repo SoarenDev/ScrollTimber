@@ -38,6 +38,7 @@ public class scr_level_generation_behavior : MonoBehaviour
     /// </summary>
     public void ResetLevelGeneration()
     {
+        Debug.Log("Level generation reset");
         StopAllCoroutines();
         ClearLevelObjects();
         actual_generation_index = 0;
@@ -50,8 +51,12 @@ public class scr_level_generation_behavior : MonoBehaviour
     /// </summary>
     public void StartLevelGeneration()
     {
+        print("bidule");
         ResetLevelGeneration();
+        print("bidule2");
         generation_coroutine = StartCoroutine("GenerationCoroutine");
+
+        Debug.Log("inGeneration");
 
         // set gamemanager remaining tree amount
         GameManager.instance.remaining_trees = LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].generation_list.Count;
@@ -103,8 +108,10 @@ public class scr_level_generation_behavior : MonoBehaviour
     /// <summary>
     /// Coroutine used to control the level objects' generation over time.
     /// </summary>
-    public IEnumerator GenerationCoroutine()
+    private IEnumerator GenerationCoroutine()
     {
+        Debug.Log("Couroutine started");
+
         // kill coroutine if there is no more objects to generate
         if (actual_generation_index > LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].generation_list.Count-1)
         { Debug.LogWarning("All level item generated"); StopAllCoroutines(); yield return null;}

@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public  GameObject                  part_system_perfect;
     public  GameObject                  part_system_fail;
     public  GameObject                  tutorial_image_ref                  ;
+    public Animator tutorial_image_animator_ref;
     // = = =
 
     // = = = [ VARIABLES PROPERTIES ] = = =
@@ -181,25 +182,31 @@ public class GameManager : MonoBehaviour
     {
         Debug.LogWarning("<b>!!! START GAME !!!</b>");
 
+        Debug.Log("Start game before level reset");
         // reset level state
         LevelsManager.instance.ResetLevelState();
+
+        Debug.Log("Start game before level variables");
 
         // initialize level variable from data
         ground_behavior_ref.scroll_speed = LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].level_scroll_speed;
 
+        Debug.Log("Start game before generate");
         // start level objects generation
         ScrollingManager.instance.level_generation_script_ref.StartLevelGeneration();
 
+        // change game state
+        Debug.Log("BEFORE state change reached");
+        ChangeGameState(enum_GameState.running);
+        Debug.Log("state change reached");
+
         // display tutorial image if it's the FIRST LEVEL
-        if ( LevelsManager.instance.actual_level == 1 )
+        if (LevelsManager.instance.actual_level == 1)
         {
             tutorial_image_ref.SetActive(true);
-            Destroy(tutorial_image_ref, 10.00f);
+            tutorial_image_animator_ref.Play("anim_control_help_popup");
         }
 
-        // change game state
-        ChangeGameState(enum_GameState.running);
-        
         return;
     }
 

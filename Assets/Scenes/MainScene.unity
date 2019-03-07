@@ -1193,6 +1193,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 694218688}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &418308764 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2000328386, guid: d0658dbf7f823084caadc0d25e0ae09c,
+    type: 3}
+  m_PrefabInstance: {fileID: 694218688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &423788137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3867,6 +3873,7 @@ MonoBehaviour:
   part_system_fail: {fileID: 1998159104523486, guid: 14a3da36e5bc10f4eb8202f743bfbf3c,
     type: 3}
   tutorial_image_ref: {fileID: 418308762}
+  tutorial_image_animator_ref: {fileID: 418308764}
 --- !u!114 &2009725355
 MonoBehaviour:
   m_ObjectHideFlags: 0
