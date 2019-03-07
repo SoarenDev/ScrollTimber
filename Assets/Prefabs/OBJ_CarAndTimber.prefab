@@ -4787,6 +4787,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1339333636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752852499203721888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2bcd66e54068d469e4a02c49fcd38d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailFx: {fileID: 1200676132503944813}
 --- !u!1 &5454450172730395560
 GameObject:
   m_ObjectHideFlags: 0
@@ -6028,6 +6041,12 @@ PrefabInstance:
       objectReference: {fileID: 1752852499204020012}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7609a4abd35f13a47b7619ed3ad368c0, type: 3}
+--- !u!4 &1752852499204020088 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400126, guid: 7609a4abd35f13a47b7619ed3ad368c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752852499203624326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1752852499204020080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400118, guid: 7609a4abd35f13a47b7619ed3ad368c0,
@@ -6154,6 +6173,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1752852499203624326}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1752852499203721888 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100134, guid: 7609a4abd35f13a47b7619ed3ad368c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752852499203624326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1752852499204019840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400134, guid: 7609a4abd35f13a47b7619ed3ad368c0,
@@ -6187,12 +6212,6 @@ Transform:
 --- !u!4 &1752852499204020038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400064, guid: 7609a4abd35f13a47b7619ed3ad368c0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1752852499203624326}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1752852499204020088 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400126, guid: 7609a4abd35f13a47b7619ed3ad368c0,
     type: 3}
   m_PrefabInstance: {fileID: 1752852499203624326}
   m_PrefabAsset: {fileID: 0}
