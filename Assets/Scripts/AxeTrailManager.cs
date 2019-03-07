@@ -20,13 +20,6 @@ public class AxeTrailManager : MonoBehaviour
         initialScale = trailFx.transform.localScale;
     }
 
-    private void Update()
-    {
-        print(initialPosition);
-        print(initialRotation);
-        print(initialScale);
-    }
-
     void StartTrail()
     {
         trailFx.Play();
