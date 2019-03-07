@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103b93dd70d614d4e9039fa8d30ca637, type: 3}
+  m_Name: 02_Mountains2
+  m_EditorClassIdentifier: 
+  id: 2
+  label: Mountains II
+  prefab_tree_type: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
+    type: 3}
+  meshes_to_spawn_list:
+  - {fileID: 4300000, guid: fc3f2090e1bf95647a03ab8876524e96, type: 3}
+  - {fileID: 4300000, guid: 517b37f2673b6de48ae878dae3c2de61, type: 3}
+  - {fileID: 4300000, guid: 7ec44b120772946418e81b2c09100a02, type: 3}
+  best_score: 0
+  level_scroll_speed: 5
+  generation_list:
+  - delay_before_generation: 0
+  - delay_before_generation: 3
+  - delay_before_generation: 4
+  - delay_before_generation: 2
+  - delay_before_generation: 2
+  - delay_before_generation: 2
+  - delay_before_generation: 3
+  - delay_before_generation: 1.5
+  - delay_before_generation: 1.5
+  - delay_before_generation: 3

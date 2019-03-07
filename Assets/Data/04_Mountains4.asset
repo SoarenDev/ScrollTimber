@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 103b93dd70d614d4e9039fa8d30ca637, type: 3}
-  m_Name: 01_test_level_2
+  m_Name: 04_Mountains4
   m_EditorClassIdentifier: 
-  id: 1
-  label: test_level 2
+  id: 4
+  label: Mountains IV
   prefab_tree_type: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
     type: 3}
   meshes_to_spawn_list:
@@ -23,13 +23,13 @@ MonoBehaviour:
   best_score: 0
   level_scroll_speed: 5
   generation_list:
-  - delay_before_generation: 0
-  - delay_before_generation: 3
   - delay_before_generation: 4
-  - delay_before_generation: 2
-  - delay_before_generation: 2
+  - delay_before_generation: 2.5
+  - delay_before_generation: 2.5
+  - delay_before_generation: 3
+  - delay_before_generation: 3
   - delay_before_generation: 2
   - delay_before_generation: 3
-  - delay_before_generation: 1.5
-  - delay_before_generation: 1.5
+  - delay_before_generation: 2
+  - delay_before_generation: 3
   - delay_before_generation: 3

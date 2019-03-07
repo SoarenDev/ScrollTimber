@@ -3718,6 +3718,7 @@ MonoBehaviour:
   car_animator_ref: {fileID: 1809639329}
   scroll_cylinder_parent: {fileID: 617525594}
   ui_main_menu_parent: {fileID: 1000682373}
+  ui_canvas_reference: {fileID: 1967729396}
   ui_success_menu_parent: {fileID: 1796878786}
   ui_failure_menu_parent: {fileID: 34766072}
   ui_score_container: {fileID: 1861043620}
@@ -3727,6 +3728,8 @@ MonoBehaviour:
   part_system_perfect: {fileID: 1959025214467312, guid: 1360e643c8e67b941bd1932032ae5b08,
     type: 3}
   part_system_fail: {fileID: 1998159104523486, guid: 14a3da36e5bc10f4eb8202f743bfbf3c,
+    type: 3}
+  tutorial_image_prefab: {fileID: 2164354123977707812, guid: d0658dbf7f823084caadc0d25e0ae09c,
     type: 3}
 --- !u!114 &2009725355
 MonoBehaviour:
@@ -3740,11 +3743,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d965f961d19a242805d5e2a5cc9526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actual_level: 0
+  actual_level: 1
   level_data_list:
   - {fileID: 11400000, guid: 4bad10dff4bb25248aca09f41443feaf, type: 2}
+  - {fileID: 11400000, guid: 721441a76bf9235468542f8df74b8809, type: 2}
   - {fileID: 11400000, guid: 5f71af082ef656144a2932841d37598f, type: 2}
   - {fileID: 11400000, guid: 5a12263480b2d4c46a87cee3d7d5efdf, type: 2}
+  - {fileID: 11400000, guid: 97832cec55fe1be499d77583e2408422, type: 2}
+  - {fileID: 11400000, guid: 0c6c67c2d6de03545a5d00dc204c1d6e, type: 2}
 --- !u!114 &2009725356
 MonoBehaviour:
   m_ObjectHideFlags: 0

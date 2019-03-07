@@ -34,13 +34,15 @@ public class GameManager : MonoBehaviour
     public  Animator                    car_animator_ref                    ;
     public  GameObject                  scroll_cylinder_parent              ;
     public  GameObject                  ui_main_menu_parent                 ;
+    public  GameObject                  ui_canvas_reference                 ;
     public  GameObject                  ui_success_menu_parent              ;
     public  GameObject                  ui_failure_menu_parent              ;
     public  GameObject                  ui_score_container                  ;
     public  GameObject                  ui_total_money_container            ;
-    public GameObject part_system_good;
-    public GameObject part_system_perfect;
-    public GameObject part_system_fail;
+    public  GameObject                  part_system_good;
+    public  GameObject                  part_system_perfect;
+    public  GameObject                  part_system_fail;
+    public  GameObject                  tutorial_image_prefab               ;
     // = = =
 
     // = = = [ VARIABLES PROPERTIES ] = = =
@@ -187,6 +189,14 @@ public class GameManager : MonoBehaviour
 
         // start level objects generation
         ScrollingManager.instance.level_generation_script_ref.StartLevelGeneration();
+
+        // display tutorial image if it's the FIRST LEVEL
+        if ( LevelsManager.instance.actual_level == 1 )
+        {
+            GameObject instance;
+            instance = Instantiate(tutorial_image_prefab, new Vector3 (606, 540, 0), Quaternion.identity, ui_canvas_reference.transform );
+            Destroy(instance, 10.00f);
+        }
 
         // change game state
         ChangeGameState(enum_GameState.running);

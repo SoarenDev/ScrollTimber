@@ -48,17 +48,6 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P) == true)
-        {
-            AddScore(10);
-        }
-    }
-
 // = = =
 
 // = = = [ CLASS METHODS ] = = =
