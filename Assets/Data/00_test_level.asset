@@ -14,35 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   label: test_level
+  prefab_tree_type: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
+    type: 3}
+  meshes_to_spawn_list:
+  - {fileID: 4300000, guid: fc3f2090e1bf95647a03ab8876524e96, type: 3}
+  - {fileID: 4300000, guid: 517b37f2673b6de48ae878dae3c2de61, type: 3}
+  - {fileID: 4300000, guid: 7ec44b120772946418e81b2c09100a02, type: 3}
   best_score: 0
   generation_list:
   - delay_before_generation: 1
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 1
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 0.5
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 0.5
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 2
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 0.5
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 0.5
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 0.5
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 0.5
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}
   - delay_before_generation: 1
-    object_prefab: {fileID: 2078431146064628653, guid: 5ea033b402329c046972dcd00b339f2c,
-      type: 3}

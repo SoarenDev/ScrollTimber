@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class scr_level_generation_behavior : MonoBehaviour
@@ -61,12 +62,15 @@ public class scr_level_generation_behavior : MonoBehaviour
     /// <summary>
     /// Instantiates a new object as part of level generation.
     /// </summary>
-    public void GenerateLevelObject(GameObject object_to_generate)
+    public void GenerateLevelObject(GameObject object_to_generate, Mesh mesh_to_generate)
     {
         GameObject instance;
 
         instance = Instantiate(object_to_generate, generation_spawn_point_ref.transform.position, Quaternion.identity);
         instance.transform.SetParent(generated_objects_container_ref.transform, true);
+
+        //modifies the mesh of the newly-created GameObject
+        instance.GetComponent<MeshFilter>().mesh = mesh_to_generate;
 
         // add generated tree to generated list
         generated_trees.Add(instance);
@@ -109,8 +113,8 @@ public class scr_level_generation_behavior : MonoBehaviour
         Debug.Log("Generation delay launched:" + LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].generation_list[actual_generation_index].delay_before_generation);
         yield return new WaitForSeconds(LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].generation_list[actual_generation_index].delay_before_generation);
 
-        // actually generate the object
-        GenerateLevelObject(LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].generation_list[actual_generation_index].object_prefab);
+        // actually generate the object with a random mesh
+        GenerateLevelObject(LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].prefab_tree_type, LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].meshes_to_spawn_list[Random.Range(0, LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].meshes_to_spawn_list.Count())]);
 
         // increments actual generated object index
         actual_generation_index += 1;

@@ -12,6 +12,10 @@ public class so_level_data : ScriptableObject
     public  int                                 id                          ;
     public  string                              label                       ;
     [Space(5)]
+    public GameObject                           prefab_tree_type            ;
+    [Space(5)]
+    public  List<Mesh>                          meshes_to_spawn_list        ;
+    [Space(5)]
     public  int                                 best_score                  ;
 
 [Space(10)][Header("Content")]

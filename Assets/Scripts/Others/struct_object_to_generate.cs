@@ -9,7 +9,6 @@ public class struct_object_to_generate
 // = = = [ VARIABLES DEFINITION ] = = =
 
     public  float               delay_before_generation         ;
-    public  GameObject          object_prefab                   ;
        
 // = = =
 
