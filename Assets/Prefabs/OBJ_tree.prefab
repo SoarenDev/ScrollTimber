@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078431146064628653}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1.5}
   m_Children: []
@@ -113,11 +113,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f4ac9f7f12f3646a372ecb81e425a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slashWidth: 0.01
-  upperObjectToSpawn: {fileID: 4639517202117791079, guid: be8bd986a349b7a479d3dc89aae17a58,
-    type: 3}
-  lowerObjectToSpawn: {fileID: 337525332702549762, guid: fa44629217a98a2439e1ec4a797603b9,
-    type: 3}
+  slashWidth: 0.03
+  possibleMeshes:
+  - {fileID: 4300000, guid: fc3f2090e1bf95647a03ab8876524e96, type: 3}
+  - {fileID: 4300000, guid: 517b37f2673b6de48ae878dae3c2de61, type: 3}
+  - {fileID: 4300000, guid: 7ec44b120772946418e81b2c09100a02, type: 3}
+  correspondingUpperTrees:
+  - {fileID: 8909164865351258076, guid: 8edf3c32ec092b04087510883d2cb1a6, type: 3}
+  - {fileID: 5513728045715729477, guid: e0eecc568a6ad3441bbf4dcdbb42017d, type: 3}
+  - {fileID: 8997460718256207866, guid: ae0f8d6fd5d208148a5ed4fe533ee9ed, type: 3}
+  correspondingLowerTrees:
+  - {fileID: 3342343015989987508, guid: 4e76baba926da6449aa20ace0e3d17db, type: 3}
+  - {fileID: 6865970246688513026, guid: 041ceb961efdc2c42a89d248899f034d, type: 3}
+  - {fileID: 6118849321705620784, guid: 74ff43888da38604fa0608ff8311b477, type: 3}
 --- !u!65 &2721432992671556420
 BoxCollider:
   m_ObjectHideFlags: 0
