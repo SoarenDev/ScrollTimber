@@ -93,7 +93,9 @@ public class CuttingManager : MonoBehaviour
     {
         if (treeIsInZone)
         {
+
             treeVector = detectedTree.weak_point_direction;
+
             if (hasAnActualSwipe)
             {
                 detectedTree.GetComponent<MeshSeparation>().OnCut(Vector2.SignedAngle(Vector2.right, publicSwipeVectorDirection), 0.1f);
@@ -101,10 +103,11 @@ public class CuttingManager : MonoBehaviour
                 
             }
         }
+        publicSwipeVectorDirection = GetSwipingDirection();
 
         Debug.DrawRay(Vector2.zero, treeVector * 5, Color.green);
 
-        publicSwipeVectorDirection = GetSwipingDirection();
+        
 
         //print("delta = " + touch.deltaPosition.magnitude);
     }
@@ -153,7 +156,7 @@ public class CuttingManager : MonoBehaviour
 
             Vector2 transformedPos = new Vector2(touchPos.x / 180, touchPos.y / 170); // position du doigt en coordonnées monde (puisque le capté de base est en pixel)
             //print("touchPos : " + touchPos + "Which becomes : " + transformedPos);
-            pointingTool.transform.position = transformedPos;                         // La position du debugPositionTool est suit celle du doigt
+            //pointingTool.transform.position = transformedPos;                         // La position du debugPositionTool est suit celle du doigt
 
             if (!hasAnActualSwipe)
             {
@@ -279,6 +282,7 @@ public class CuttingManager : MonoBehaviour
     {
         //print("waiting");
         yield return new WaitForSeconds(timeBetweenSwipes);
+        publicSwipeVectorDirection = Vector2.zero;
         startSwipePosition = Vector2.zero;
         endSwipePosition = Vector2.zero;
         hasAnActualSwipe = false;
