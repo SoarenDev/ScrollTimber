@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 // = = = [ VARIABLES DEFINITION ] = = =
 
 [Space(10)][Header("Global variables")]
-    public  int                         actual_money                        = 0;
+    public  int                         total_money                         = 0;
 
 [Space(10)][Header("Gameplay")]
     public  int                         allowed_fails                       = 1;

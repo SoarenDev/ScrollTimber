@@ -107,7 +107,10 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public void AddScoreToTotalMoney()
     {
-        GameManager.instance.actual_money += actual_score;
+        GameManager.instance.total_money += actual_score;
+
+        GameManager.instance.ui_behavior_ref.UpdateTotalMoneyUI( GameManager.instance.total_money.ToString() );
+
         return;
     }
 

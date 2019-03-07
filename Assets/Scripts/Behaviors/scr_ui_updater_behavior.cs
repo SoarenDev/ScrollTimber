@@ -29,6 +29,7 @@ public class scr_ui_updater_behavior : MonoBehaviour
         UpdateScoreUI("+0");
         UpdateComboUI("0");
         UpdateActualLevelLabelUI();
+        UpdateTotalMoneyUI(GameManager.instance.total_money.ToString());
     }
 
 // = = =

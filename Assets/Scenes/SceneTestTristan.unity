@@ -3168,7 +3168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82be1869f327ff145a2d738dcbb9d56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actual_money: 0
+  total_money: 0
   allowed_fails: 3
   game_state: 0
   fails_count: 0
@@ -3196,6 +3196,7 @@ MonoBehaviour:
   actual_level: 0
   level_data_list:
   - {fileID: 11400000, guid: 4bad10dff4bb25248aca09f41443feaf, type: 2}
+  - {fileID: 11400000, guid: 5f71af082ef656144a2932841d37598f, type: 2}
 --- !u!114 &2009725356
 MonoBehaviour:
   m_ObjectHideFlags: 0
