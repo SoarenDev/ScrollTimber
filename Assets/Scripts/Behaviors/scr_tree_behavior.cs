@@ -16,6 +16,7 @@ public class scr_tree_behavior : MonoBehaviour
     private GameObject decal_prefab_instance;
     public int[] anglesList;
     public GameObject[] decal_prefabs;
+    public Camera main;
     
 
 // = = =
@@ -26,7 +27,7 @@ public class scr_tree_behavior : MonoBehaviour
     {
         GenerateAppearance();
         InitializeWeakPoint();
-
+        main = Camera.main;
     }
 
     // = = =
@@ -101,14 +102,18 @@ public class scr_tree_behavior : MonoBehaviour
                 CuttingManager.cuttingManagerInstance.UnregisterTree();
                 ScoreManager.instance.ResetCombo();
                 ScoreManager.instance.AddScore(base_gained_score);
-            break;
+                GameObject part_syst_good = Instantiate(GameManager.instance.part_system_good, main.transform);
+                part_syst_good.transform.position = main.transform.position + main.transform.forward * 0.5f;
+                break;
 
             case cutStateEnum.Perfect:
                 Debug.Log("PERFECT");
                 CuttingManager.cuttingManagerInstance.UnregisterTree();
                 ScoreManager.instance.AddCombo(1);
                 ScoreManager.instance.AddScore( base_gained_score + (base_gained_score*ScoreManager.instance.actual_combo) );
-            break;
+                GameObject part_syst_perfect = Instantiate(GameManager.instance.part_system_perfect, main.transform);
+                part_syst_perfect.transform.position = main.transform.position + main.transform.forward * 0.5f;
+                break;
         }
 
         GameManager.instance.RemainingTrees -= 1;

@@ -45,6 +45,7 @@ public class CuttingManager : MonoBehaviour
     public Vector2 publicSwipeVectorDirection;
     public scr_tree_behavior detectedTree;
     public Vector2 treeVector;
+    public Animator lumberjackAnimator;
 
     private Vector2 swipeVector;
 
@@ -98,7 +99,9 @@ public class CuttingManager : MonoBehaviour
 
             if (hasAnActualSwipe)
             {
+
                 detectedTree.GetComponent<MeshSeparation>().OnCut(Vector2.SignedAngle(Vector2.right, publicSwipeVectorDirection), 0.1f);
+                lumberjackAnimator.SetTrigger("Cut");
                 detectedTree.CutTree(ComparingSwipeAndTree());
                 
             }
