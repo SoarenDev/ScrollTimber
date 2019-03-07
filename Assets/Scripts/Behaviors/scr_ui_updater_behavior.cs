@@ -79,7 +79,7 @@ public class scr_ui_updater_behavior : MonoBehaviour
     /// </summary>
     public void UpdateTotalMoneyUI(string text)
     {
-        txt_total_money.text = text;
+        txt_total_money.text = "Total money: " + text;
 
         return;
     }

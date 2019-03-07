@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   total_money: 0
-  allowed_fails: 3
+  allowed_fails: 1
   game_state: 0
   fails_count: 0
   remaining_trees: 0
