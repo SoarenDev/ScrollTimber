@@ -102,6 +102,16 @@ public class ScoreManager : MonoBehaviour
         return;
     }
 
+    /// <summary>
+    /// Adds the actual score/money to the total money of the player.
+    /// </summary>
+    public void AddScoreToTotalMoney()
+    {
+        GameManager.instance.actual_money += actual_score;
+        return;
+    }
+
+
 // = = =
 
 }

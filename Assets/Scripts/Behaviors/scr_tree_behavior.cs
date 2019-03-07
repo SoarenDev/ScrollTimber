@@ -5,20 +5,20 @@ using UnityEngine;
 public class scr_tree_behavior : MonoBehaviour
 {
 
-    // = = = [ VARIABLES DEFINITION ] = = =
+// = = = [ VARIABLES DEFINITION ] = = =
 
-    [Space(10)]
-    [Header("Runtime")]
+[Space(10)] [Header("Runtime")]
     public Vector3 weak_point_direction;           // actual weak point direction, used to compare with director vector
 
-    [Space(10)]
-    [Header("Gameplay")]
+[Space(10)] [Header("Gameplay")]
+    public  int     base_gained_score      =1;
     public float weak_point_direction_max = 0.50f;     // maxmimal angular ratio that the cut can reach (negative and positive)
     private GameObject decal_prefab_instance;
     public int[] anglesList;
     public GameObject[] decal_prefabs;
+    
 
-    // = = =
+// = = =
 
     // = = = [ MONOBEHAVIOR METHODS ] = = =
 
@@ -99,15 +99,16 @@ public class scr_tree_behavior : MonoBehaviour
             case cutStateEnum.Success:
                 Debug.Log("SUCCESS");
                 CuttingManager.cuttingManagerInstance.UnregisterTree();
-                ScoreManager.instance.AddScore(1 + ScoreManager.instance.actual_combo);
-                break;
+                ScoreManager.instance.ResetCombo();
+                ScoreManager.instance.AddScore(base_gained_score);
+            break;
 
             case cutStateEnum.Perfect:
                 Debug.Log("PERFECT");
                 CuttingManager.cuttingManagerInstance.UnregisterTree();
                 ScoreManager.instance.AddCombo(1);
-                ScoreManager.instance.AddScore(1 + ScoreManager.instance.actual_combo);
-                break;
+                ScoreManager.instance.AddScore( base_gained_score + (base_gained_score*ScoreManager.instance.actual_combo) );
+            break;
         }
 
         GameManager.instance.RemainingTrees -= 1;

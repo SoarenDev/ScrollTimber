@@ -20,7 +20,7 @@ public class scr_ground_behavior : MonoBehaviour
     void Update()
     {
         // parent cylinder scrolling
-        if (GameManager.instance.game_state != enum_GameState.paused && GameManager.instance.game_state != enum_GameState.endmenu)
+        if (GameManager.instance.game_state != enum_GameState.paused && GameManager.instance.game_state != enum_GameState.failuremenu && GameManager.instance.game_state != enum_GameState.successmenu )
         {
             ScrollCylinder(scroll_speed*Time.deltaTime);
         }

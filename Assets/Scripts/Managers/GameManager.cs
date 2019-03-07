@@ -7,7 +7,8 @@ public enum enum_GameState
     startmenu,
     paused,
     running,
-    endmenu
+    successmenu,
+    failuremenu
 }
 
 public class GameManager : MonoBehaviour
@@ -17,25 +18,25 @@ public class GameManager : MonoBehaviour
 // = = = [ VARIABLES DEFINITION ] = = =
 
 [Space(10)][Header("Global variables")]
-    public  int             actual_money                        = 0;
+    public  int                         actual_money                        = 0;
 
 [Space(10)][Header("Gameplay")]
-    public  int             allowed_fails                       = 1;
+    public  int                         allowed_fails                       = 1;
 
 [Space(10)][Header("Runtime")]
-    public  bool            isGamePaused                        = false;
-    public  enum_GameState  game_state                          ;
-    public  int             fails_count                         ;
-    public  int             remaining_trees                     ;
+    public  enum_GameState              game_state                          ;
+    public  int                         fails_count                         ;
+    public  int                         remaining_trees                     ;
 
 [Space(10)][Header("References")]
-    public  Animator        car_animator_ref                    ;
-    public  GameObject      scroll_cylinder_parent              ;
-    public  GameObject      ui_main_menu_parent                 ;
-    public  GameObject      ui_success_menu_parent              ;
-    public  GameObject      ui_failure_menu_parent              ;
-    public  GameObject      ui_score_container                  ;
-
+    public  scr_ui_updater_behavior     ui_behavior_ref                     ;
+    public  Animator                    car_animator_ref                    ;
+    public  GameObject                  scroll_cylinder_parent              ;
+    public  GameObject                  ui_main_menu_parent                 ;
+    public  GameObject                  ui_success_menu_parent              ;
+    public  GameObject                  ui_failure_menu_parent              ;
+    public  GameObject                  ui_score_container                  ;
+    public  GameObject                  ui_total_money_container            ;
 
 // = = =
 
@@ -106,17 +107,60 @@ public class GameManager : MonoBehaviour
         switch (new_state)
         {
             case enum_GameState.startmenu:
+                
+                // update ui visibility
+                ui_score_container.SetActive(false); 
+                ui_main_menu_parent.SetActive(true);
+                ui_success_menu_parent.SetActive(false);
+                ui_failure_menu_parent.SetActive(false);
+                ui_total_money_container.SetActive(true);
+
+                // change car anim state
+                car_animator_ref.SetBool("isMoving", true);
+
+                // update ui values
+                ui_behavior_ref.UpdateActualLevelLabelUI();
+
             break;
 
             case enum_GameState.running:
 
+                // change ui visibility
+                ui_score_container.SetActive(true); 
+                ui_main_menu_parent.SetActive(false);
+                ui_success_menu_parent.SetActive(false);
+                ui_failure_menu_parent.SetActive(false);
+                ui_total_money_container.SetActive(false);
+
+                // change car anim state
+                car_animator_ref.SetBool("isMoving", true);
+
             break;
 
-            case enum_GameState.endmenu:
+            case enum_GameState.successmenu:
+
+                // update ui visibility
+                ui_success_menu_parent.SetActive(true);
+                ui_total_money_container.SetActive(false);
+
+                // change car anim state
+                car_animator_ref.SetBool("isMoving", false);
+
+            break;
+
+            case enum_GameState.failuremenu:
+
+                // update ui visibility
+                ui_failure_menu_parent.SetActive(true);
+                ui_total_money_container.SetActive(false);
+
+                // change car anim state
+                car_animator_ref.SetBool("isMoving", false);
 
             break;
 
             case enum_GameState.paused:
+                ui_total_money_container.SetActive(true);
                 
             break;
         }
@@ -136,15 +180,8 @@ public class GameManager : MonoBehaviour
         ScrollingManager.instance.level_generation_script_ref.StartLevelGeneration();
 
         // change game state
-        game_state = enum_GameState.running;
-        ui_score_container.SetActive(true);     // a mettre dans method
-        ui_main_menu_parent.SetActive(false);
-        ui_success_menu_parent.SetActive(false);
-        ui_failure_menu_parent.SetActive(false);
-
-        // change car anim state
-        car_animator_ref.SetBool("isMoving", true);
-
+        ChangeGameState(enum_GameState.running);
+        
         return;
     }
 
@@ -157,14 +194,7 @@ public class GameManager : MonoBehaviour
         ScrollingManager.instance.level_generation_script_ref.ResetLevelGeneration();
 
         // change game state
-        game_state = enum_GameState.startmenu;
-        ui_score_container.SetActive(false);     // a mettre dans method
-        ui_main_menu_parent.SetActive(true);
-        ui_success_menu_parent.SetActive(false);
-        ui_failure_menu_parent.SetActive(false);
-
-        // change car anim state
-        car_animator_ref.SetBool("isMoving", true);
+        ChangeGameState(enum_GameState.startmenu);
 
         return;
     }
@@ -177,11 +207,10 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("<b>LEVEL SUCCESS</b>");
 
         // change game state
-        game_state = enum_GameState.endmenu;
-        ui_success_menu_parent.SetActive(true);
+        ChangeGameState(enum_GameState.successmenu);
 
-        // change car anim state
-        car_animator_ref.SetBool("isMoving", false);
+        // register and cash money
+        ScoreManager.instance.AddScoreToTotalMoney();
 
         // reach next level
         LevelsManager.instance.MoveToNextLevel();
@@ -197,8 +226,7 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("<b>LEVEL FAILURE</b>");
 
         // change game state
-        game_state = enum_GameState.endmenu;
-        ui_failure_menu_parent.SetActive(true);
+        ChangeGameState(enum_GameState.failuremenu);
 
         // change car anim state
         car_animator_ref.SetBool("isMoving", false);
