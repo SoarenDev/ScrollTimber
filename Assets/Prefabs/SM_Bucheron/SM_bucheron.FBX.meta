@@ -71,6 +71,8 @@ ModelImporter:
     100130: mixamorig:Spine1
     100132: mixamorig:Spine2
     100134: //RootNode
+    100136: Bone001
+    100138: Bone002
     400000: Cylinder001
     400002: Line001
     400004: mixamorig:Head
@@ -139,6 +141,8 @@ ModelImporter:
     400130: mixamorig:Spine1
     400132: mixamorig:Spine2
     400134: //RootNode
+    400136: Bone001
+    400138: Bone002
     2100000: 'Material #27'
     2100002: No Name
     4300000: Cylinder001
@@ -237,7 +241,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
+    previousCalculatedGlobalScale: 0.001
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
