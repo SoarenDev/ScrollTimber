@@ -5,27 +5,33 @@ using UnityEngine;
 public class scr_tree_behavior : MonoBehaviour
 {
 
-// = = = [ VARIABLES DEFINITION ] = = =
+    // = = = [ VARIABLES DEFINITION ] = = =
 
-[Space(10)][Header("Runtime")]
-    public  Vector3                 weak_point_direction                ;           // actual weak point direction, used to compare with director vector
+    [Space(10)]
+    [Header("Runtime")]
+    public Vector3 weak_point_direction;           // actual weak point direction, used to compare with director vector
 
-[Space(10)][Header("Gameplay")]
-    public  float                   weak_point_direction_max           = 0.50f;     // maxmimal angular ratio that the cut can reach (negative and positive)
-  
-// = = =
+    [Space(10)]
+    [Header("Gameplay")]
+    public float weak_point_direction_max = 0.50f;     // maxmimal angular ratio that the cut can reach (negative and positive)
+    private GameObject decal_prefab_instance;
+    public int[] anglesList;
+    public GameObject[] decal_prefabs;
 
-// = = = [ MONOBEHAVIOR METHODS ] = = =
+    // = = =
+
+    // = = = [ MONOBEHAVIOR METHODS ] = = =
 
     void Start()
     {
         GenerateAppearance();
         InitializeWeakPoint();
+
     }
 
-// = = =
+    // = = =
 
-// = = = [ CLASS METHODS ] = = =
+    // = = = [ CLASS METHODS ] = = =
 
     /// <summary>
     /// Generates the appearance of the tree.
@@ -51,7 +57,7 @@ public class scr_tree_behavior : MonoBehaviour
 	/// [OBSOLETE] Initialises the object self destruction after a given amount of time.
 	/// </summary>
 	public void InitializeSelfDestruction(float delay)
-	{
+    {
         return;
     }
 
@@ -59,24 +65,35 @@ public class scr_tree_behavior : MonoBehaviour
 	/// Returns a normalized vector that indicates a direction.
 	/// </summary>
 	public Vector3 GenerateCutDirection()
-	{
-		Vector3 direction_vector = new Vector3(0,0,0);
+    {
+        Vector3 direction_vector = new Vector3(0, 0, 0);
 
-		// normalize combined axis inputs' value
-		float normalize_factor;  // factor used to normalise the vector
-		direction_vector.x = 0.50f;
-		direction_vector.y = Random.Range(-weak_point_direction_max, weak_point_direction_max);
-		normalize_factor = Mathf.Abs(direction_vector.x) + Mathf.Abs(direction_vector.y);
-				
-		// return normalized direction vector
-		return (direction_vector / normalize_factor);
-	}
+        int randomSelectedNumber = Random.Range(0, anglesList.Length);
+
+        decal_prefab_instance = GameObject.Instantiate(decal_prefabs[randomSelectedNumber], this.transform); // Generates the visible cut along with the weak point of the tree.
+
+        float directionAngle = anglesList[randomSelectedNumber]; // Getting one of the stored vector stored in anglesList
+
+        direction_vector = new Vector3(Mathf.Cos(Mathf.Deg2Rad * directionAngle), Mathf.Sin(Mathf.Deg2Rad * directionAngle), 0); //converting the angle to a Vector3
+
+        // normalize combined axis inputs' value
+        float normalize_factor;  // factor used to normalise the vector
+
+        normalize_factor = Mathf.Abs(direction_vector.x) + Mathf.Abs(direction_vector.y);
+
+
+        // return normalized direction vector
+        return (direction_vector / normalize_factor);
+    }
+
+
+
 
     /// <summary>
-	/// Called by the cutting manager when the tree is cutted by the player.
-	/// </summary>
-	public void CutTree( cutStateEnum state )
-	{
+    /// Called by the cutting manager when the tree is cutted by the player.
+    /// </summary>
+    public void CutTree(cutStateEnum state)
+    {
         switch (state)
         {
             case cutStateEnum.Success:
@@ -102,6 +119,6 @@ public class scr_tree_behavior : MonoBehaviour
     }
 
 
-// = = =
+    // = = =
 
 }

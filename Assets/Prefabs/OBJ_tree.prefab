@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2078431146064628653}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,6 +94,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weak_point_direction: {x: 0, y: 0, z: 0}
   weak_point_direction_max: 0.5
+  anglesList: e2ffffffc4ffffff000000001e0000003c000000
+  decal_prefabs:
+  - {fileID: 1057541980636831545, guid: 490e1a3fc622dad4bac2f1920ff4450a, type: 3}
+  - {fileID: 9046322934123131694, guid: 0e88dbcd090345f4eb664e6a90c565cf, type: 3}
+  - {fileID: 8771520713873277202, guid: 744b2e803a0ccff499c0ea1e37e70d77, type: 3}
+  - {fileID: 3986936228676253156, guid: 6058ad39a6bb06c44ba5bf1addd4b64c, type: 3}
+  - {fileID: 5813029163428666771, guid: 157c834a16b64ce4a8e3b24bcaacea55, type: 3}
 --- !u!114 &5805116200650142522
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -596,6 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actual_generation_index: 0
+  generated_trees: []
   generation_spawn_point_ref: {fileID: 1436526870}
   generated_objects_container_ref: {fileID: 1803402312}
 --- !u!1 &843776830
@@ -1495,10 +1496,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowed_fails: 1
   isGamePaused: 0
-  is_level_finished: 0
+  game_state: 0
   fails_count: 0
   remaining_trees: 0
   scroll_cylinder_parent: {fileID: 617525594}
+  ui_main_menu_parent: {fileID: 0}
+  ui_score_container: {fileID: 0}
 --- !u!114 &2009725355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1560,7 +1563,7 @@ MonoBehaviour:
   swipeWindowTime: 0.5
   minimumSwipeLenght: 200
   timeBetweenSwipes: 0.2
-  vectorComparisonOffset: 10
+  vectorComparisonOffset: 15
   minimumDeltaSwipe: 30
   slowMoManager: {fileID: 1425639824}
   treeIsInZone: 0
@@ -1603,7 +1606,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
