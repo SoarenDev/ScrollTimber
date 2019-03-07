@@ -9,12 +9,16 @@ public class ScoreManager : MonoBehaviour
 
 // = = = [ VARIABLES DEFINITION ] = = =
 
+[Space(10)][Header("Data")]
+    public  GameObject                  money_particle_prefab       ;              
+
 [Space(10)][Header("Runtime")]
     public  int                         actual_score                ;
     public  int                         actual_combo                ;           // +1 per perfect (+1 per tree at the 1st perfect, +2 on the 2nd, +3 at the 3rd...)
 
 [Space(10)][Header("References")]
     public  scr_ui_updater_behavior     ui_behavior_ref             ;
+    public  GameObject                  ui_money_particle_target    ;
 
 // = = =
 
@@ -44,6 +48,17 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P) == true)
+        {
+            AddScore(10);
+        }
+    }
+
 // = = =
 
 // = = = [ CLASS METHODS ] = = =
@@ -55,6 +70,12 @@ public class ScoreManager : MonoBehaviour
     {
         actual_score += value;
         ui_behavior_ref.UpdateScoreUI( actual_score.ToString() );
+
+        // spawn particle
+        GameObject instance;
+        instance = Instantiate(money_particle_prefab, ui_money_particle_target.transform.position, Quaternion.Euler(-90,0,0));
+        instance.transform.SetParent(GameManager.instance.ui_score_container.transform, true);
+        Destroy(instance, 2.0f);
 
         return;
     }
